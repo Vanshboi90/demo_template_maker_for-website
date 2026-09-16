@@ -25,7 +25,8 @@ import {
   Phone,
   MapPin,
   CheckCircle,
-  Code
+  Code,
+  RefreshCw
 } from 'lucide-react';
 
 interface DashboardProps {
@@ -44,8 +45,30 @@ export const Dashboard: React.FC<DashboardProps> = ({
   const [shareBusiness, setShareBusiness] = useState<BusinessProfile | null>(null);
   const [copiedSlug, setCopiedSlug] = useState<string | null>(null);
 
+  const [syncing, setSyncing] = useState(false);
+  const [syncSuccess, setSyncSuccess] = useState(false);
+
   const reloadData = () => {
     setBusinesses(getAllBusinesses());
+  };
+
+  const handleSyncToCloud = async () => {
+    setSyncing(true);
+    try {
+      for (const b of businesses) {
+        await fetch('/api/demos', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(b)
+        });
+      }
+      setSyncSuccess(true);
+      setTimeout(() => setSyncSuccess(false), 3000);
+    } catch {
+      // Ignore
+    } finally {
+      setSyncing(false);
+    }
   };
 
   const handleDemoCreated = (created: BusinessProfile) => {
@@ -103,17 +126,30 @@ export const Dashboard: React.FC<DashboardProps> = ({
             </div>
           </div>
 
-          {/* Create Demo CTA */}
-          <button
-            onClick={() => {
-              setEditingBusiness(null);
-              setIsCreateOpen(true);
-            }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#2b211f] text-[#fdf9f4] text-xs font-semibold uppercase tracking-wider hover:bg-[#140c0a] shadow-md transition-all hover:scale-[1.02]"
-          >
-            <Plus className="w-4 h-4 text-[#ffd796]" />
-            <span>Create Demo</span>
-          </button>
+          {/* Action CTAs */}
+          <div className="flex items-center gap-2.5">
+            <button
+              onClick={handleSyncToCloud}
+              disabled={syncing}
+              title="Sync all demos to Upstash Cloud Database"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-white border border-[#2b211f]/15 text-[#140c0a] text-xs font-semibold uppercase tracking-wider hover:bg-[#eee7dd] shadow-xs transition-all disabled:opacity-50"
+            >
+              <RefreshCw className={`w-3.5 h-3.5 text-[#775a25] ${syncing ? 'animate-spin' : ''}`} />
+              <span>{syncSuccess ? 'Synced!' : syncing ? 'Syncing...' : 'Sync Cloud'}</span>
+            </button>
+
+            {/* Create Demo CTA */}
+            <button
+              onClick={() => {
+                setEditingBusiness(null);
+                setIsCreateOpen(true);
+              }}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#2b211f] text-[#fdf9f4] text-xs font-semibold uppercase tracking-wider hover:bg-[#140c0a] shadow-md transition-all hover:scale-[1.02]"
+            >
+              <Plus className="w-4 h-4 text-[#ffd796]" />
+              <span>Create Demo</span>
+            </button>
+          </div>
         </div>
       </header>
 

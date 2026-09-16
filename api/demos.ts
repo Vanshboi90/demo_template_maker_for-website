@@ -103,42 +103,46 @@ function getRedisCredentials(): { url?: string; token?: string } {
   return { url, token };
 }
 
-async function kvGet(key: string): Promise<any> {
+// Upstash Redis universal command caller
+async function redisCommand(command: string, ...args: any[]): Promise<any> {
   const { url, token } = getRedisCredentials();
   if (!url || !token) return null;
 
   try {
-    const res = await fetch(`${url}/get/${key}`, {
-      headers: { Authorization: `Bearer ${token}` }
-    });
-    const data = await res.json();
-    if (data && data.result) {
-      return JSON.parse(data.result);
-    }
-  } catch (err) {
-    console.error('KV GET Error:', err);
-  }
-  return null;
-}
-
-async function kvSet(key: string, value: any): Promise<boolean> {
-  const { url, token } = getRedisCredentials();
-  if (!url || !token) return false;
-
-  try {
-    const res = await fetch(`${url}/set/${key}`, {
+    const cleanUrl = url.endsWith('/') ? url.slice(0, -1) : url;
+    const res = await fetch(cleanUrl, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(JSON.stringify(value))
+      body: JSON.stringify([command, ...args])
     });
-    return res.ok;
+    const data = await res.json();
+    if (data && data.result) {
+      if (typeof data.result === 'string') {
+        try {
+          return JSON.parse(data.result);
+        } catch {
+          return data.result;
+        }
+      }
+      return data.result;
+    }
   } catch (err) {
-    console.error('KV SET Error:', err);
-    return false;
+    console.error(`Redis ${command} error:`, err);
   }
+  return null;
+}
+
+async function kvGet(key: string): Promise<any> {
+  return await redisCommand('GET', key);
+}
+
+async function kvSet(key: string, value: any): Promise<boolean> {
+  const str = typeof value === 'string' ? value : JSON.stringify(value);
+  const result = await redisCommand('SET', key, str);
+  return result === 'OK';
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {

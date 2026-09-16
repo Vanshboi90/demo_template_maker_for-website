@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
 import { BusinessProfile } from '../types/business';
-import { getAllBusinesses, getBusinessBySlug } from '../services/businessService';
+import { getAllBusinesses, getBusinessBySlug, saveBusiness } from '../services/businessService';
 import { DEFAULT_BUSINESS_PROFILES } from '../data/defaultBusinesses';
 
 interface BusinessContextType {
@@ -34,7 +34,26 @@ export const BusinessProvider: React.FC<{
     }
   }, [currentSlug]);
 
-  // Async API fallback: If demo is not in local storage, fetch from /api/demos (Upstash / Cloud DB)
+  // Sync with cloud database on load
+  useEffect(() => {
+    fetch('/api/demos')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((list) => {
+        if (Array.isArray(list) && list.length > 0) {
+          list.forEach((item) => {
+            if (item && item.slug && item.businessName) {
+              saveBusiness(item);
+            }
+          });
+          setAllBusinesses(getAllBusinesses());
+        }
+      })
+      .catch(() => {
+        // Offline / static fallback
+      });
+  }, []);
+
+  // Async API fallback: If specific demo is not in local storage, fetch from /api/demos (Upstash / Cloud DB)
   useEffect(() => {
     const local = getBusinessBySlug(activeSlug);
     if (!local) {
@@ -42,6 +61,7 @@ export const BusinessProvider: React.FC<{
         .then((res) => (res.ok ? res.json() : null))
         .then((data) => {
           if (data && data.businessName && data.slug) {
+            saveBusiness(data);
             const updated = getAllBusinesses();
             setAllBusinesses(updated);
           }
