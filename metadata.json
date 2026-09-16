@@ -1,0 +1,6 @@
+{
+  "name": "LUMÉRA Beauty Studio",
+  "description": "Bespoke bridal couture makeup, hairstyling, and restorative aesthetic rituals curated around timeless elegance in Pune.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

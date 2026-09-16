@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  --color-surface: #fdf9f4;
+  --color-surface-dim: #ddd9d5;
+  --color-surface-bright: #fdf9f4;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f7f3ee;
+  --color-surface-container: #f1ede8;
+  --color-surface-container-high: #ebe8e3;
+  --color-surface-container-highest: #e6e2dd;
+  --color-on-surface: #1c1c19;
+  --color-on-surface-variant: #4e4543;
+  --color-primary: #140c0a;
+  --color-primary-container: #2b211f;
+  --color-on-primary: #ffffff;
+  --color-secondary: #775a25;
+  --color-secondary-container: #ffd796;
+  --color-on-secondary-container: #795c27;
+  --color-tertiary: #240204;
+  --color-tertiary-container: #401517;
+  --color-tertiary-fixed: #ffdad9;
+  --color-outline: #807572;
+  --color-outline-variant: #d2c3c1;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+  }
+}
+
+@keyframes reelMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-reel-marquee {
+  display: flex;
+  width: max-content;
+  animation: reelMarquee 42s linear infinite;
+}
+
+.pause-marquee {
+  animation-play-state: paused !important;
+}
