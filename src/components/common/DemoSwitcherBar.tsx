@@ -19,7 +19,7 @@ export const DemoSwitcherBar: React.FC<DemoSwitcherBarProps> = ({
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    const url = createShareableUrl(slug, business, false);
+    const url = createShareableUrl(slug);
     navigator.clipboard.writeText(url);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);

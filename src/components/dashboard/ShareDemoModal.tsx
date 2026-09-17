@@ -9,7 +9,6 @@ import {
   MessageCircle,
   Code,
   Sparkles,
-  Smartphone,
   Globe
 } from 'lucide-react';
 
@@ -24,24 +23,19 @@ export const ShareDemoModal: React.FC<ShareDemoModalProps> = ({
   onClose,
   business
 }) => {
-  const [copiedUniversal, setCopiedUniversal] = useState(false);
   const [copiedClean, setCopiedClean] = useState(false);
   const [copiedCode, setCopiedCode] = useState(false);
   const [showCode, setShowCode] = useState(false);
 
   if (!isOpen || !business) return null;
 
-  // Universal link contains encoded payload so it works on ANY phone/client device with zero database
-  const universalUrl = createShareableUrl(business.slug, business, false);
-  const cleanUrl = `${typeof window !== 'undefined' ? window.location.origin : ''}/makeup/${business.slug}`;
+  // Clean normal link to share with clients: /makeup/{slug}
+  const normalUrl = createShareableUrl(business.slug);
   const codeSnippet = getBusinessCodeSnippet(business);
 
-  const handleCopy = (text: string, type: 'universal' | 'clean' | 'code') => {
+  const handleCopy = (text: string, type: 'normal' | 'code') => {
     navigator.clipboard.writeText(text);
-    if (type === 'universal') {
-      setCopiedUniversal(true);
-      setTimeout(() => setCopiedUniversal(false), 2500);
-    } else if (type === 'clean') {
+    if (type === 'normal') {
       setCopiedClean(true);
       setTimeout(() => setCopiedClean(false), 2500);
     } else {
@@ -51,7 +45,7 @@ export const ShareDemoModal: React.FC<ShareDemoModalProps> = ({
   };
 
   const whatsappMessage = encodeURIComponent(
-    `Hello! Here is the personalized beauty studio & bridal demo created exclusively for you: ${universalUrl}`
+    `Hello! Here is the personalized beauty studio & bridal demo created exclusively for you: ${normalUrl}`
   );
 
   return (
@@ -107,38 +101,38 @@ export const ShareDemoModal: React.FC<ShareDemoModalProps> = ({
             </div>
           </div>
 
-          {/* PRIMARY: Universal Cross-Device Link */}
+          {/* PRIMARY: Clean Normal Client Link */}
           <div className="p-4 rounded-xl bg-[#f5ede2]/70 border border-[#775a25]/25 space-y-2.5">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold uppercase tracking-wider text-[#775a25] flex items-center gap-1.5">
-                <Smartphone className="w-3.5 h-3.5" />
-                <span>Universal Client Link (Works on Any Mobile / Device)</span>
+                <Globe className="w-3.5 h-3.5" />
+                <span>Client Demo Link</span>
               </span>
               <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
-                Recommended
+                Ready to Share
               </span>
             </div>
             <p className="text-[11px] text-[#736a67] leading-relaxed">
-              Send this link to your client on WhatsApp or SMS. It carries their custom logo and details into their phone, and automatically cleans the browser bar to <code className="text-[#140c0a] font-mono">/makeup/{business.slug}</code> once opened!
+              Send this clean link to your client on WhatsApp, Instagram, or email. They can view the personalized studio website directly.
             </p>
 
             <div className="flex items-center gap-2">
               <input
                 type="text"
                 readOnly
-                value={universalUrl}
-                className="flex-1 px-3 py-2 rounded-lg bg-white border border-[#2b211f]/20 font-mono text-[11px] text-[#140c0a] select-all focus:outline-none truncate"
+                value={normalUrl}
+                className="flex-1 px-3 py-2 rounded-lg bg-white border border-[#2b211f]/20 font-mono text-xs text-[#140c0a] select-all focus:outline-none truncate"
               />
               <button
                 type="button"
-                onClick={() => handleCopy(universalUrl, 'universal')}
+                onClick={() => handleCopy(normalUrl, 'normal')}
                 className={`px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5 transition-all shrink-0 ${
-                  copiedUniversal
+                  copiedClean
                     ? 'bg-emerald-600 text-white'
                     : 'bg-[#2b211f] text-[#fdf9f4] hover:bg-[#140c0a]'
                 }`}
               >
-                {copiedUniversal ? (
+                {copiedClean ? (
                   <>
                     <Check className="w-3.5 h-3.5" />
                     <span>Copied</span>
@@ -156,7 +150,7 @@ export const ShareDemoModal: React.FC<ShareDemoModalProps> = ({
           {/* Action Buttons: Open & WhatsApp */}
           <div className="grid grid-cols-2 gap-3">
             <a
-              href={universalUrl}
+              href={normalUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white border border-[#2b211f]/15 text-xs font-semibold uppercase tracking-wider text-[#140c0a] hover:bg-[#eee7dd] transition-colors shadow-xs"

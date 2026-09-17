@@ -193,14 +193,15 @@ export function validateBusinessJSON(jsonString: string): {
 
 /**
  * Generate shareable link
- * Defaults to universal cross-device link for custom demos so it loads on mobile phones and client devices
+ * Defaults to clean, normal link: /makeup/{slug}
+ * (Optional includePayload=true can be passed if a standalone offline link is ever needed)
  */
-export function createShareableUrl(slug: string, profile?: BusinessProfile, forceClean: boolean = false): string {
+export function createShareableUrl(slug: string, profile?: BusinessProfile, includePayload: boolean = false): string {
   if (typeof window === 'undefined') return `/makeup/${slug}`;
   const origin = window.location.origin;
 
-  // For custom demos, include portable payload by default so any phone/client can open it
-  if (!forceClean && profile && profile.slug !== 'demo01') {
+  // Only include portable payload if explicitly requested
+  if (includePayload && profile) {
     const payload = encodeProfileToPayload(profile);
     if (payload) {
       return `${origin}/makeup/${slug}?d=${payload}`;

@@ -16,6 +16,41 @@ export interface VercelResponse {
 // In-memory fallback
 let memoryDemos: any[] = [
   {
+    slug: 'makeupshekupkolhapur',
+    businessName: 'Makeup.shekup',
+    shortName: 'MASH',
+    tagline: 'Atelier of Bespoke Beauty',
+    heroSubtitle: 'Couture Bridal Artistry & Luxury Hair Styling',
+    description: 'Internationally Certified frm UK 🇬🇧\nPFW🇫🇷 DFW🇦🇪 LFW🇬🇧\nBackstage | Bridal|Educator\n📍 kolhapur UK Paris Dubai',
+    logoUrl: '/logos/makeupshekup_logo.jpg',
+    phone: '9175757003',
+    whatsapp: '9175757003',
+    email: 'contact@studiomakeup.com',
+    address: {
+      street: 'Kolhapur',
+      city: 'City Center',
+      state: 'State',
+      pincode: '400001',
+      landmark: ''
+    },
+    hours: {
+      weekdays: 'Monday – Saturday: 10:00 AM – 8:00 PM',
+      weekends: 'Sunday: Bridal Consultations By Appointment',
+      note: 'Valet Parking Available for Clients'
+    },
+    socials: {
+      instagram: 'https://www.instagram.com/makeup.shekup?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==',
+      whatsapp: '9175757003',
+      googleMapsUrl: 'https://maps.google.com/?q=Kolhapur%20'
+    },
+    theme: {
+      accentColor: '#b56d78',
+      secondaryAccent: '#ffd796',
+      currencySymbol: '₹'
+    },
+    createdAt: '2026-09-17T16:59:27.522Z'
+  },
+  {
     slug: 'demo01',
     businessName: 'LUMÉRA Beauty Studio',
     shortName: 'LUMÉRA',

@@ -18,13 +18,22 @@ export const Footer: React.FC<FooterProps> = ({ onNavClick }) => {
             
             {/* 1. Brand Monogram */}
             <div className="flex flex-col gap-4">
-              <div className="flex flex-col">
-                <span className="font-serif text-2xl text-[#140c0a] uppercase tracking-wider font-medium">
-                  {business.shortName || business.businessName}
-                </span>
-                <span className="text-[10px] tracking-[0.2em] text-[#775a25] uppercase font-semibold mt-0.5">
-                  {business.tagline}
-                </span>
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 aspect-square rounded-full overflow-hidden bg-white border border-[#2b211f]/10 shrink-0 flex items-center justify-center shadow-xs">
+                  <img
+                    src={business.logoUrl}
+                    alt={business.businessName}
+                    className="w-full h-full aspect-square object-cover"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-serif text-2xl text-[#140c0a] uppercase tracking-wider font-medium leading-tight">
+                    {business.shortName || business.businessName}
+                  </span>
+                  <span className="text-[10px] tracking-[0.2em] text-[#775a25] uppercase font-semibold mt-0.5">
+                    {business.tagline}
+                  </span>
+                </div>
               </div>
               <p className="text-sm text-[#4e4543] font-light max-w-xs leading-relaxed">
                 {business.description}

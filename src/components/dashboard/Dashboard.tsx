@@ -85,8 +85,8 @@ export const Dashboard: React.FC<DashboardProps> = ({
     }
   };
 
-  const handleCopyLink = (slug: string, business: BusinessProfile) => {
-    const url = createShareableUrl(slug, business, false);
+  const handleCopyLink = (slug: string) => {
+    const url = createShareableUrl(slug);
     navigator.clipboard.writeText(url);
     setCopiedSlug(slug);
     setTimeout(() => setCopiedSlug(null), 2000);
@@ -225,7 +225,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((item) => {
-              const clientUrl = createShareableUrl(item.slug, item, false);
+              const clientUrl = createShareableUrl(item.slug);
 
               return (
                 <div
@@ -287,7 +287,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
                     <div className="flex items-center gap-1">
                       {/* Copy Link Button */}
                       <button
-                        onClick={() => handleCopyLink(item.slug, item)}
+                        onClick={() => handleCopyLink(item.slug)}
                         title="Copy Client Link"
                         className="p-2 rounded-lg text-[#736a67] hover:text-[#140c0a] hover:bg-[#eee7dd] transition-colors"
                       >

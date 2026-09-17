@@ -40,13 +40,28 @@ export const Navbar: React.FC<NavbarProps> = ({
     <>
       <header className="fixed top-0 w-full z-40 bg-[#fdf9f4]/95 backdrop-blur-xl border-b border-[#2b211f]/5 shadow-[0_4px_20px_-2px_rgba(43,33,31,0.04)]">
         <div className="h-20 max-w-[1360px] mx-auto px-5 lg:px-12 flex items-center justify-between">
-          {/* Logo */}
-          <a href="#home" className="flex items-center group">
-            <img
-              src={business.logoUrl || ASSETS.logo}
-              alt={business.businessName}
-              className="h-10 sm:h-12 w-auto max-w-[180px] sm:max-w-[220px] object-contain transition-transform group-hover:scale-105"
-            />
+          {/* 1:1 Logo & Business Name */}
+          <a href="#home" className="flex items-center gap-3 sm:gap-3.5 group min-w-0">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 aspect-square rounded-full overflow-hidden bg-[#f8f4ee] border border-[#2b211f]/15 shrink-0 flex items-center justify-center shadow-xs group-hover:border-[#775a25]/60 transition-all">
+              <img
+                src={business.logoUrl || ASSETS.logo}
+                alt={business.businessName}
+                className="w-full h-full aspect-square object-cover transition-transform duration-300 group-hover:scale-105"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = ASSETS.logo;
+                }}
+              />
+            </div>
+            <div className="flex flex-col min-w-0">
+              <span className="font-serif text-base sm:text-lg font-bold text-[#140c0a] tracking-tight truncate leading-tight group-hover:text-[#775a25] transition-colors">
+                {business.businessName}
+              </span>
+              {business.tagline && (
+                <span className="text-[10px] tracking-[0.16em] uppercase font-semibold text-[#775a25] truncate max-w-[140px] xs:max-w-[200px] sm:max-w-[280px]">
+                  {business.tagline}
+                </span>
+              )}
+            </div>
           </a>
 
           {/* Desktop Navigation Links */}
