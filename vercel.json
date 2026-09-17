@@ -1,9 +1,51 @@
 {
   "framework": "vite",
+  "functions": {
+    "api/meta.ts": {
+      "includeFiles": "dist/**"
+    }
+  },
   "rewrites": [
     {
       "source": "/api/(.*)",
       "destination": "/api/$1"
+    },
+    {
+      "source": "/makeup/:slug*",
+      "has": [
+        {
+          "type": "query",
+          "key": "preview"
+        }
+      ],
+      "destination": "/api/meta?slug=:slug*"
+    },
+    {
+      "source": "/makeup/:slug*",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*([Bb]ot|[Cc]rawler|[Ss]pider|[Ff]acebook|[Ww]hats[Aa]pp|[Tt]witter|[Tt]elegram|[Ll]inked[Ii]n|[Ss]lack|[Dd]iscord|[Aa]pplebot|[Gg]oogle|[Pp]interest|[Ss]kype|[Ee]mbedly|[Qq]uora|[Mm]eta-|[Cc]url|[Pp]review).*"
+        }
+      ],
+      "destination": "/api/meta?slug=:slug*"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "demo",
+          "value": "(?<slug>.*)"
+        },
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*([Bb]ot|[Cc]rawler|[Ss]pider|[Ff]acebook|[Ww]hats[Aa]pp|[Tt]witter|[Tt]elegram|[Ll]inked[Ii]n|[Ss]lack|[Dd]iscord|[Aa]pplebot|[Gg]oogle|[Pp]interest|[Ss]kype|[Ee]mbedly|[Qq]uora|[Mm]eta-|[Cc]url|[Pp]review).*"
+        }
+      ],
+      "destination": "/api/meta?slug=:slug"
     },
     {
       "source": "/(.*)",

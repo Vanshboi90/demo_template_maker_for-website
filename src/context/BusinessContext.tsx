@@ -78,10 +78,45 @@ export const BusinessProvider: React.FC<{
     return allBusinesses[0] || DEFAULT_BUSINESS_PROFILES[0];
   }, [activeSlug, allBusinesses]);
 
-  // Dynamically update document title and brand styles
+  // Dynamically update document title, meta tags, and brand styles
   useEffect(() => {
     if (business) {
-      document.title = `${business.businessName} — ${business.tagline}`;
+      const pageTitle = `${business.businessName} — ${business.tagline || 'Atelier of Bespoke Beauty'}`;
+      document.title = pageTitle;
+
+      const descText = (business.description || business.heroSubtitle || 'Bespoke bridal couture makeup and luxury aesthetic rituals.').replace(/[\r\n]+/g, ' ').trim();
+      const currentUrl = window.location.href;
+
+      const setMeta = (attr: 'name' | 'property', key: string, content: string) => {
+        let el = document.querySelector(`meta[${attr}="${key}"]`);
+        if (!el) {
+          el = document.createElement('meta');
+          el.setAttribute(attr, key);
+          document.head.appendChild(el);
+        }
+        el.setAttribute('content', content);
+      };
+
+      setMeta('name', 'description', descText);
+      setMeta('property', 'og:title', pageTitle);
+      setMeta('property', 'og:description', descText);
+      setMeta('property', 'og:url', currentUrl);
+      setMeta('name', 'twitter:title', pageTitle);
+      setMeta('name', 'twitter:description', descText);
+
+      if (business.logoUrl) {
+        setMeta('property', 'og:image', business.logoUrl);
+        setMeta('name', 'twitter:image', business.logoUrl);
+
+        // Update favicon
+        let favicon = document.querySelector<HTMLLinkElement>('link[rel="icon"]');
+        if (!favicon) {
+          favicon = document.createElement('link');
+          favicon.rel = 'icon';
+          document.head.appendChild(favicon);
+        }
+        favicon.href = business.logoUrl;
+      }
       
       // Update theme accent if provided
       if (business.theme?.accentColor) {
