@@ -41,14 +41,38 @@ export function getAllBusinesses(): BusinessProfile[] {
     if (stored) {
       const parsed = JSON.parse(stored);
       if (Array.isArray(parsed) && parsed.length > 0) {
+        // Sanitize any stale googleusercontent logo URLs that cause 403 errors
+        let hadStaleUrls = false;
+        const sanitizedList = parsed.map((p: BusinessProfile) => {
+          if (p.logoUrl && p.logoUrl.includes('googleusercontent.com')) {
+            hadStaleUrls = true;
+            const matchingDefault = DEFAULT_BUSINESS_PROFILES.find((d) => d.slug === p.slug);
+            return {
+              ...p,
+              logoUrl: matchingDefault ? matchingDefault.logoUrl : DEFAULT_BUSINESS_PROFILES[0].logoUrl
+            };
+          }
+          return p;
+        });
+
         // Merge with defaults if any default is missing
-        const slugs = new Set(parsed.map((p) => p.slug));
-        const merged = [...parsed];
+        const slugs = new Set(sanitizedList.map((p) => p.slug));
+        const merged = [...sanitizedList];
         for (const defaultProfile of DEFAULT_BUSINESS_PROFILES) {
           if (!slugs.has(defaultProfile.slug)) {
             merged.push(defaultProfile);
+            hadStaleUrls = true;
           }
         }
+
+        if (hadStaleUrls) {
+          try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+          } catch {
+            // Ignore
+          }
+        }
+
         return merged;
       }
     }

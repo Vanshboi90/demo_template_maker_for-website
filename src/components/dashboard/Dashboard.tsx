@@ -8,6 +8,7 @@ import {
 } from '../../services/businessService';
 import { CreateDemoModal } from './CreateDemoModal';
 import { ShareDemoModal } from './ShareDemoModal';
+import { ASSETS } from '../../data';
 import {
   Plus,
   Copy,
@@ -241,8 +242,11 @@ export const Dashboard: React.FC<DashboardProps> = ({
                           alt={item.businessName}
                           className="max-h-full max-w-full object-contain"
                           onError={(e) => {
-                            (e.target as HTMLImageElement).src =
-                              'https://lh3.googleusercontent.com/aida/AEtjO1Vp3uD1YFay-Qf-khJr0Rr7SWTWSwDOAA-pBbop2o-jaM3EKB0Lce85jRrRgAcQ3uKjlILcE2OxnR56lDEfpOBAzd7PHqaXCP2Sk2Y9TmI7V3M1kM1UTNmZgMJg4LcnVR-DhqZusnTcgVFiaHrkgADOLbcsE7OycuHQ2_Bjth7DGdgmMbv4V2DJvBQPfxF5xTrTokutb4u0JCCBzT_j5sRyOwdM3-s3VhJYNWqbRsZPizyd9lvTdVJsnO2g';
+                            const target = e.currentTarget;
+                            target.onerror = null;
+                            if (target.src !== ASSETS.logo) {
+                              target.src = ASSETS.logo;
+                            }
                           }}
                         />
                       </div>

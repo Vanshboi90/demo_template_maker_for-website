@@ -57,7 +57,7 @@ let memoryDemos: any[] = [
     tagline: 'Atelier of Bespoke Beauty',
     heroSubtitle: 'Couture Bridal Artistry & Luxury Hair Styling',
     description: 'At LUMÉRA, we believe makeup should enhance who you are, not conceal it. Our artists create personalized beauty looks that harmoniously complement your facial anatomy, distinct personality, and special occasion.',
-    logoUrl: 'https://lh3.googleusercontent.com/aida/AEtjO1Vp3uD1YFay-Qf-khJr0Rr7SWTWSwDOAA-pBbop2o-jaM3EKB0Lce85jRrRgAcQ3uKjlILcE2OxnR56lDEfpOBAzd7PHqaXCP2Sk2Y9TmI7V3M1kM1UTNmZgMJg4LcnVR-DhqZusnTcgVFiaHrkgADOLbcsE7OycuHQ2_Bjth7DGdgmMbv4V2DJvBQPfxF5xTrTokutb4u0JCCBzT_j5sRyOwdM3-s3VhJYNWqbRsZPizyd9lvTdVJsnO2g',
+    logoUrl: '/assets/images/makeupshekup_logo.jpg',
     phone: '+91 98765 43210',
     whatsapp: '+91 98765 43210',
     email: 'hello@lumerabeauty.com',

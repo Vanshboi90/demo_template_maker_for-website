@@ -3,48 +3,13 @@ import makeupShekupLogo from '../assets/images/makeupshekup_logo.jpg';
 
 export const DEFAULT_BUSINESS_PROFILES: BusinessProfile[] = [
   {
-    slug: 'makeupshekupkolhapur',
-    businessName: 'Makeup.shekup',
-    shortName: 'MASH',
-    tagline: 'Atelier of Bespoke Beauty',
-    heroSubtitle: 'Couture Bridal Artistry & Luxury Hair Styling',
-    description: 'Internationally Certified frm UK 🇬🇧\nPFW🇫🇷 DFW🇦🇪 LFW🇬🇧\nBackstage | Bridal|Educator\n📍 kolhapur UK Paris Dubai',
-    logoUrl: makeupShekupLogo,
-    phone: '9175757003',
-    whatsapp: '9175757003',
-    email: 'contact@studiomakeup.com',
-    address: {
-      street: 'Kolhapur',
-      city: 'City Center',
-      state: 'State',
-      pincode: '400001',
-      landmark: ''
-    },
-    hours: {
-      weekdays: 'Monday – Saturday: 10:00 AM – 8:00 PM',
-      weekends: 'Sunday: Bridal Consultations By Appointment',
-      note: 'Valet Parking Available for Clients'
-    },
-    socials: {
-      instagram: 'https://www.instagram.com/makeup.shekup?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==',
-      whatsapp: '9175757003',
-      googleMapsUrl: 'https://maps.google.com/?q=Kolhapur%20'
-    },
-    theme: {
-      accentColor: '#b56d78',
-      secondaryAccent: '#ffd796',
-      currencySymbol: '₹'
-    },
-    createdAt: '2026-09-17T16:59:27.522Z'
-  },
-  {
     slug: 'demo01',
     businessName: 'LUMÉRA Beauty Studio',
     shortName: 'LUMÉRA',
     tagline: 'Atelier of Bespoke Beauty',
     heroSubtitle: 'Couture Bridal Artistry & Luxury Hair Styling',
     description: 'At LUMÉRA, we believe makeup should enhance who you are, not conceal it. Our artists create personalized beauty looks that harmoniously complement your facial anatomy, distinct personality, and special occasion.',
-    logoUrl: 'https://lh3.googleusercontent.com/aida/AEtjO1Vp3uD1YFay-Qf-khJr0Rr7SWTWSwDOAA-pBbop2o-jaM3EKB0Lce85jRrRgAcQ3uKjlILcE2OxnR56lDEfpOBAzd7PHqaXCP2Sk2Y9TmI7V3M1kM1UTNmZgMJg4LcnVR-DhqZusnTcgVFiaHrkgADOLbcsE7OycuHQ2_Bjth7DGdgmMbv4V2DJvBQPfxF5xTrTokutb4u0JCCBzT_j5sRyOwdM3-s3VhJYNWqbRsZPizyd9lvTdVJsnO2g',
+    logoUrl: makeupShekupLogo,
     phone: '+91 98765 43210',
     whatsapp: '+91 98765 43210',
     email: 'hello@lumerabeauty.com',

@@ -15,9 +15,10 @@ import portBronzeShimmer from './assets/images/port_bronze_shimmer.webp';
 import portRoseRadiance from './assets/images/port_rose_radiance.webp';
 import portHollywoodWaves from './assets/images/port_hollywood_waves.webp';
 import bridalSpotlightMain from './assets/images/bridal_spotlight_main.webp';
+import makeupShekupLogo from './assets/images/makeupshekup_logo.jpg';
 
 export const ASSETS = {
-  logo: 'https://lh3.googleusercontent.com/aida/AEtjO1Vp3uD1YFay-Qf-khJr0Rr7SWTWSwDOAA-pBbop2o-jaM3EKB0Lce85jRrRgAcQ3uKjlILcE2OxnR56lDEfpOBAzd7PHqaXCP2Sk2Y9TmI7V3M1kM1UTNmZgMJg4LcnVR-DhqZusnTcgVFiaHrkgADOLbcsE7OycuHQ2_Bjth7DGdgmMbv4V2DJvBQPfxF5xTrTokutb4u0JCCBzT_j5sRyOwdM3-s3VhJYNWqbRsZPizyd9lvTdVJsnO2g',
+  logo: makeupShekupLogo,
   heroMain: heroPortrait,
   bridalMain: bridalSpotlightMain,
   engagementMain: portDewyPastels,

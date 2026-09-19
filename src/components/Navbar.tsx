@@ -49,7 +49,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                 alt={business.businessName}
                 className="w-full h-full aspect-square object-cover transition-transform duration-300 group-hover:scale-105"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = ASSETS.logo;
+                  const target = e.currentTarget;
+                  target.onerror = null; // Prevent infinite error retry loops
+                  if (target.src !== ASSETS.logo) {
+                    target.src = ASSETS.logo;
+                  }
                 }}
               />
             </div>
