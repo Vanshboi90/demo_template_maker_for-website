@@ -51,83 +51,84 @@ export const CoursesAndProductsPage: React.FC<CoursesAndProductsPageProps> = ({ 
       
       {/* 1. Header Bar */}
       <header className="sticky top-0 z-40 bg-[#fdf9f4]/95 backdrop-blur-xl border-b border-[#2b211f]/8 shadow-[0_4px_20px_-2px_rgba(43,33,31,0.04)]">
-        <div className="h-20 max-w-[1360px] mx-auto px-5 lg:px-12 flex items-center justify-between">
+        <div className="h-16 sm:h-20 max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between gap-2">
           
           {/* Back to Studio Link */}
           <button
             onClick={onBackToStudio}
-            className="group inline-flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.16em] text-[#4e4543] hover:text-[#140c0a] transition-colors py-2 px-3.5 rounded-lg bg-[#f1ede8] hover:bg-[#ebe6df]"
+            className="group inline-flex items-center gap-1.5 sm:gap-2.5 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.14em] text-[#4e4543] hover:text-[#140c0a] transition-colors py-2 px-2.5 sm:px-3.5 rounded-lg bg-[#f1ede8] hover:bg-[#ebe6df] shrink-0"
             title="Return to Main Studio Services"
           >
-            <ArrowLeft className="w-4 h-4 text-[#775a25] group-hover:-translate-x-1 transition-transform" />
-            <span>Studio Home</span>
+            <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#775a25] group-hover:-translate-x-1 transition-transform" />
+            <span className="hidden xs:inline">Studio Home</span>
+            <span className="xs:hidden">Studio</span>
           </button>
 
-          {/* Central Title */}
-          <div className="text-center">
-            <span className="font-serif text-lg sm:text-xl font-bold text-[#140c0a] tracking-tight block">
-              {business.businessName}
-            </span>
-            <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-[#775a25] block -mt-0.5">
+          {/* Central Title - Academy & Beauty Boutique ONLY */}
+          <div className="text-center min-w-0 px-2 flex-1">
+            <h1 className="font-serif text-base sm:text-xl font-bold text-[#140c0a] tracking-tight truncate leading-tight">
               Academy &amp; Beauty Boutique
+            </h1>
+            <span className="text-[9px] sm:text-[10px] font-semibold uppercase tracking-[0.18em] text-[#775a25] hidden xs:block -mt-0.5">
+              Masterclasses &amp; Formulations
             </span>
           </div>
 
           {/* Quick WhatsApp Concierge */}
           <a
-            href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent(`Hello ${business.businessName}! I am browsing your Academy Courses & Products and have a question.`)}`}
+            href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent(`Hello! I am browsing the Academy & Beauty Boutique courses and products and have an inquiry.`)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 bg-[#25d366] hover:bg-[#20bd5a] text-white rounded-lg text-[11px] sm:text-[12px] font-semibold uppercase tracking-wider shadow-sm transition-all"
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 bg-[#25d366] hover:bg-[#20bd5a] text-white rounded-lg text-[10px] sm:text-[12px] font-semibold uppercase tracking-wider shadow-xs transition-all shrink-0"
           >
-            <MessageCircle className="w-4 h-4 fill-white" />
+            <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white" />
             <span className="hidden sm:inline">WhatsApp Inquiries</span>
-            <span className="sm:hidden">Help</span>
+            <span className="sm:hidden">Inquire</span>
           </a>
         </div>
       </header>
 
       {/* 2. Hero Section */}
-      <section className="w-full py-16 lg:py-24 bg-gradient-to-b from-[#f7f3ee] to-[#fdf9f4] border-b border-[#2b211f]/6 relative overflow-hidden">
-        <div className="max-w-[1360px] mx-auto px-5 lg:px-12 relative z-10 text-center">
+      <section className="w-full py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-[#f7f3ee] to-[#fdf9f4] border-b border-[#2b211f]/6 relative overflow-hidden">
+        <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10 text-center">
           
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#775a25]/10 text-[#775a25] border border-[#775a25]/20 text-[11px] font-semibold uppercase tracking-[0.2em] mb-4">
-            <Sparkles className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#775a25]/10 text-[#775a25] border border-[#775a25]/20 text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] mb-4">
+            <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             <span>Curated Formulations &amp; Professional Education</span>
           </div>
 
-          <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-[#140c0a] font-normal tracking-tight leading-[1.15] max-w-4xl mx-auto mb-6">
+          <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl text-[#140c0a] font-normal tracking-tight leading-[1.2] max-w-4xl mx-auto mb-4 sm:mb-6">
             Master the Craft. Shop Atelier Formulations.
-          </h1>
+          </h2>
 
-          <p className="text-base sm:text-lg text-[#4e4543] font-light max-w-2xl mx-auto leading-relaxed mb-10">
+          <p className="text-sm sm:text-base lg:text-lg text-[#4e4543] font-light max-w-2xl mx-auto leading-relaxed mb-8 sm:mb-10 px-2">
             Professional certified masterclasses taught by internationally certified artists, alongside salon-tested bridal essentials formulated for timeless radiance.
           </p>
 
           {/* Trust Highlights Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-6 border-t border-[#2b211f]/10">
-            <div className="flex flex-col items-center p-3 bg-white/70 backdrop-blur-xs rounded-xl border border-[#2b211f]/5 shadow-2xs">
-              <GraduationCap className="w-6 h-6 text-[#775a25] mb-1" />
-              <span className="font-semibold text-sm text-[#140c0a]">Certified Diplomas</span>
-              <span className="text-[11px] text-[#4e4543]">Recognized Standards</span>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 max-w-4xl mx-auto pt-5 border-t border-[#2b211f]/10">
+            <div className="flex flex-col items-center p-2.5 sm:p-3 bg-white/70 backdrop-blur-xs rounded-xl border border-[#2b211f]/5 shadow-2xs">
+              <GraduationCap className="w-5 h-5 sm:w-6 sm:h-6 text-[#775a25] mb-1" />
+              <span className="font-semibold text-xs sm:text-sm text-[#140c0a]">Certified Diplomas</span>
+              <span className="text-[10px] sm:text-[11px] text-[#4e4543]">Recognized Standards</span>
             </div>
 
-            <div className="flex flex-col items-center p-3 bg-white/70 backdrop-blur-xs rounded-xl border border-[#2b211f]/5 shadow-2xs">
-              <Award className="w-6 h-6 text-[#775a25] mb-1" />
-              <span className="font-semibold text-sm text-[#140c0a]">PFW / DFW Mastery</span>
-              <span className="text-[11px] text-[#4e4543]">International Techniques</span>
+            <div className="flex flex-col items-center p-2.5 sm:p-3 bg-white/70 backdrop-blur-xs rounded-xl border border-[#2b211f]/5 shadow-2xs">
+              <Award className="w-5 h-5 sm:w-6 sm:h-6 text-[#775a25] mb-1" />
+              <span className="font-semibold text-xs sm:text-sm text-[#140c0a]">PFW / DFW Mastery</span>
+              <span className="text-[10px] sm:text-[11px] text-[#4e4543]">International Techniques</span>
             </div>
 
-            <div className="flex flex-col items-center p-3 bg-white/70 backdrop-blur-xs rounded-xl border border-[#2b211f]/5 shadow-2xs">
-              <ShieldCheck className="w-6 h-6 text-[#775a25] mb-1" />
-              <span className="font-semibold text-sm text-[#140c0a]">100% Authentic</span>
-              <span className="text-[11px] text-[#4e4543]">Bridal Studio Quality</span>
+            <div className="flex flex-col items-center p-2.5 sm:p-3 bg-white/70 backdrop-blur-xs rounded-xl border border-[#2b211f]/5 shadow-2xs">
+              <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-[#775a25] mb-1" />
+              <span className="font-semibold text-xs sm:text-sm text-[#140c0a]">100% Authentic</span>
+              <span className="text-[10px] sm:text-[11px] text-[#4e4543]">Bridal Studio Quality</span>
             </div>
 
-            <div className="flex flex-col items-center p-3 bg-white/70 backdrop-blur-xs rounded-xl border border-[#2b211f]/5 shadow-2xs">
-              <Truck className="w-6 h-6 text-[#775a25] mb-1" />
-              <span className="font-semibold text-sm text-[#140c0a]">Pan-India Shipping</span>
-              <span className="text-[11px] text-[#4e4543]">Express Delivery</span>
+            <div className="flex flex-col items-center p-2.5 sm:p-3 bg-white/70 backdrop-blur-xs rounded-xl border border-[#2b211f]/5 shadow-2xs">
+              <Truck className="w-5 h-5 sm:w-6 sm:h-6 text-[#775a25] mb-1" />
+              <span className="font-semibold text-xs sm:text-sm text-[#140c0a]">Pan-India Shipping</span>
+              <span className="text-[10px] sm:text-[11px] text-[#4e4543]">Express Delivery</span>
             </div>
           </div>
 
@@ -139,13 +140,13 @@ export const CoursesAndProductsPage: React.FC<CoursesAndProductsPageProps> = ({ 
       </section>
 
       {/* 3. Filter Navigation Tabs */}
-      <section className="sticky top-20 z-30 bg-[#fdf9f4]/95 backdrop-blur-md border-b border-[#2b211f]/8 py-4">
-        <div className="max-w-[1360px] mx-auto px-5 lg:px-12 flex items-center justify-center gap-2 sm:gap-4">
+      <section className="sticky top-16 sm:top-20 z-30 bg-[#fdf9f4]/95 backdrop-blur-md border-b border-[#2b211f]/8 py-3 sm:py-4">
+        <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-start sm:justify-center gap-2 sm:gap-3 overflow-x-auto no-scrollbar scroll-smooth">
           <button
             onClick={() => setActiveFilter('all')}
-            className={`px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-[0.14em] transition-all cursor-pointer ${
+            className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-[0.14em] transition-all cursor-pointer whitespace-nowrap shrink-0 ${
               activeFilter === 'all'
-                ? 'bg-[#140c0a] text-white shadow-sm'
+                ? 'bg-[#140c0a] text-white shadow-xs'
                 : 'bg-[#f1ede8] text-[#4e4543] hover:text-[#140c0a] hover:bg-[#ebe6df]'
             }`}
           >
@@ -154,26 +155,26 @@ export const CoursesAndProductsPage: React.FC<CoursesAndProductsPageProps> = ({ 
 
           <button
             onClick={() => setActiveFilter('courses')}
-            className={`px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-[0.14em] transition-all flex items-center gap-1.5 cursor-pointer ${
+            className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-[0.14em] transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0 ${
               activeFilter === 'courses'
-                ? 'bg-[#140c0a] text-white shadow-sm'
+                ? 'bg-[#140c0a] text-white shadow-xs'
                 : 'bg-[#f1ede8] text-[#4e4543] hover:text-[#140c0a] hover:bg-[#ebe6df]'
             }`}
           >
-            <GraduationCap className="w-4 h-4" />
-            <span>Masterclasses &amp; Courses ({ACADEMY_COURSES.length})</span>
+            <GraduationCap className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            <span>Courses ({ACADEMY_COURSES.length})</span>
           </button>
 
           <button
             onClick={() => setActiveFilter('products')}
-            className={`px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-[0.14em] transition-all flex items-center gap-1.5 cursor-pointer ${
+            className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-[0.14em] transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0 ${
               activeFilter === 'products'
-                ? 'bg-[#140c0a] text-white shadow-sm'
+                ? 'bg-[#140c0a] text-white shadow-xs'
                 : 'bg-[#f1ede8] text-[#4e4543] hover:text-[#140c0a] hover:bg-[#ebe6df]'
             }`}
           >
-            <ShoppingBag className="w-4 h-4" />
-            <span>Curated Products ({BOUTIQUE_PRODUCTS.length})</span>
+            <ShoppingBag className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            <span>Boutique ({BOUTIQUE_PRODUCTS.length})</span>
           </button>
         </div>
       </section>
@@ -446,40 +447,42 @@ export const CoursesAndProductsPage: React.FC<CoursesAndProductsPageProps> = ({ 
             </button>
 
             {/* Modal Image Header */}
-            <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-[#f1ede8]">
+            <div className="relative h-48 sm:h-64 w-full overflow-hidden bg-[#f1ede8]">
               <img
                 src={selectedCourse.image}
                 alt={selectedCourse.title}
                 className="w-full h-full object-cover"
-                style={{ objectPosition: selectedCourse.imagePosition || 'center 15%' }}
+                loading="lazy"
+                decoding="async"
+                style={{ objectPosition: selectedCourse.imagePosition || 'center 20%' }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#140c0a]/80 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#140c0a]/85 via-transparent to-transparent" />
               
-              <div className="absolute bottom-5 left-6 right-6 text-white">
-                <span className="bg-[#775a25] text-[#ffd796] px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider border border-[#ffd796]/30 inline-block mb-2">
+              <div className="absolute bottom-4 sm:bottom-5 left-4 sm:left-6 right-4 sm:right-6 text-white">
+                <span className="bg-[#775a25] text-[#ffd796] px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[9px] sm:text-[10px] font-semibold uppercase tracking-wider border border-[#ffd796]/30 inline-block mb-1.5 sm:mb-2">
                   {selectedCourse.tag}
                 </span>
-                <h3 className="font-serif text-2xl sm:text-3xl font-medium leading-tight">
+                <h3 className="font-serif text-xl sm:text-2xl md:text-3xl font-medium leading-tight">
                   {selectedCourse.title}
                 </h3>
               </div>
             </div>
 
             {/* Modal Body */}
-            <div className="p-6 sm:p-8 space-y-6 max-h-[60vh] overflow-y-auto">
+            <div className="p-4 sm:p-6 md:p-8 space-y-5 sm:space-y-6 max-h-[55vh] sm:max-h-[60vh] overflow-y-auto">
               {/* Quick Specs */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 bg-[#fbf8f4] p-4 rounded-xl border border-[#2b211f]/5 text-xs">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3 bg-[#fbf8f4] p-3 sm:p-4 rounded-xl border border-[#2b211f]/5 text-xs">
                 <div>
-                  <span className="text-[#8c827a] block text-[10px] uppercase tracking-wider">Duration</span>
-                  <span className="font-semibold text-[#140c0a]">{selectedCourse.duration}</span>
+                  <span className="text-[#8c827a] block text-[9px] sm:text-[10px] uppercase tracking-wider">Duration</span>
+                  <span className="font-semibold text-[#140c0a] text-xs sm:text-sm">{selectedCourse.duration}</span>
                 </div>
                 <div>
-                  <span className="text-[#8c827a] block text-[10px] uppercase tracking-wider">Level</span>
-                  <span className="font-semibold text-[#140c0a]">{selectedCourse.level}</span>
+                  <span className="text-[#8c827a] block text-[9px] sm:text-[10px] uppercase tracking-wider">Level</span>
+                  <span className="font-semibold text-[#140c0a] text-xs sm:text-sm">{selectedCourse.level}</span>
                 </div>
-                <div>
-                  <span className="text-[#8c827a] block text-[10px] uppercase tracking-wider">Batches</span>
-                  <span className="font-semibold text-[#140c0a]">{selectedCourse.batches}</span>
+                <div className="col-span-2 sm:col-span-1">
+                  <span className="text-[#8c827a] block text-[9px] sm:text-[10px] uppercase tracking-wider">Batches</span>
+                  <span className="font-semibold text-[#140c0a] text-xs sm:text-sm">{selectedCourse.batches}</span>
                 </div>
               </div>
 
@@ -488,7 +491,7 @@ export const CoursesAndProductsPage: React.FC<CoursesAndProductsPageProps> = ({ 
                 <h4 className="text-xs font-semibold uppercase tracking-wider text-[#775a25] mb-2">
                   Course Overview
                 </h4>
-                <p className="text-sm text-[#4e4543] font-light leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#4e4543] font-light leading-relaxed">
                   {selectedCourse.description}
                 </p>
               </div>
@@ -524,13 +527,13 @@ export const CoursesAndProductsPage: React.FC<CoursesAndProductsPageProps> = ({ 
               </div>
 
               {/* Certificate badge */}
-              <div className="bg-[#775a25]/10 border border-[#775a25]/20 p-4 rounded-xl flex items-center gap-3">
-                <BadgeCheck className="w-8 h-8 text-[#775a25] shrink-0" />
+              <div className="bg-[#775a25]/10 border border-[#775a25]/20 p-3.5 sm:p-4 rounded-xl flex items-center gap-3">
+                <BadgeCheck className="w-7 h-7 sm:w-8 sm:h-8 text-[#775a25] shrink-0" />
                 <div>
                   <span className="text-[10px] uppercase tracking-wider font-semibold text-[#775a25] block">
                     Awarded Qualification
                   </span>
-                  <span className="font-serif text-sm font-semibold text-[#140c0a]">
+                  <span className="font-serif text-xs sm:text-sm font-semibold text-[#140c0a]">
                     {selectedCourse.certification}
                   </span>
                 </div>
@@ -538,10 +541,10 @@ export const CoursesAndProductsPage: React.FC<CoursesAndProductsPageProps> = ({ 
             </div>
 
             {/* Modal Actions */}
-            <div className="p-6 bg-[#fbf8f4] border-t border-[#2b211f]/8 flex items-center justify-between gap-4">
+            <div className="p-4 sm:p-6 bg-[#fbf8f4] border-t border-[#2b211f]/8 flex flex-col xs:flex-row items-stretch xs:items-center justify-between gap-3 sm:gap-4">
               <div>
-                <span className="text-[10px] uppercase tracking-wider text-[#4e4543] block">Tuition Fee</span>
-                <span className="font-serif text-2xl font-bold text-[#140c0a]">
+                <span className="text-[9px] sm:text-[10px] uppercase tracking-wider text-[#4e4543] block">Tuition Fee</span>
+                <span className="font-serif text-xl sm:text-2xl font-bold text-[#140c0a]">
                   {selectedCourse.price}
                 </span>
               </div>
@@ -550,10 +553,10 @@ export const CoursesAndProductsPage: React.FC<CoursesAndProductsPageProps> = ({ 
                   handleWhatsAppInquiry(selectedCourse.title, 'course', selectedCourse.price);
                   setSelectedCourse(null);
                 }}
-                className="px-6 py-3 bg-[#25d366] hover:bg-[#20bd5a] text-white rounded-xl text-xs font-semibold uppercase tracking-wider shadow-md transition-colors flex items-center gap-2"
+                className="w-full xs:w-auto px-5 sm:px-6 py-2.5 sm:py-3 bg-[#25d366] hover:bg-[#20bd5a] text-white rounded-xl text-xs font-semibold uppercase tracking-wider shadow-md transition-colors flex items-center justify-center gap-2"
               >
                 <MessageCircle className="w-4 h-4 fill-white" />
-                <span>Reserve Seat via WhatsApp</span>
+                <span>Reserve via WhatsApp</span>
               </button>
             </div>
           </div>
@@ -562,44 +565,46 @@ export const CoursesAndProductsPage: React.FC<CoursesAndProductsPageProps> = ({ 
 
       {/* 6. Product Detail Modal */}
       {selectedProduct && (
-        <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-3 sm:p-4">
           <div
             onClick={() => setSelectedProduct(null)}
             className="fixed inset-0 bg-[#140c0a]/65 backdrop-blur-xs transition-opacity"
           />
-          <div className="relative bg-white w-full max-w-xl rounded-3xl overflow-hidden shadow-2xl z-10 border border-[#2b211f]/10 my-8 animate-in fade-in zoom-in-95 duration-200">
+          <div className="relative bg-white w-full max-w-2xl rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl z-10 border border-[#2b211f]/10 my-4 sm:my-8 animate-in fade-in zoom-in-95 duration-200">
             {/* Close Button */}
             <button
               onClick={() => setSelectedProduct(null)}
-              className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-[#140c0a]/60 text-white hover:bg-[#140c0a] flex items-center justify-center transition-colors"
+              className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#140c0a]/60 text-white hover:bg-[#140c0a] flex items-center justify-center transition-colors"
               aria-label="Close modal"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
 
-            {/* Product Image */}
-            <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-[#f1ede8]">
+            {/* Modal Image Header */}
+            <div className="relative h-48 sm:h-64 w-full overflow-hidden bg-[#f1ede8]">
               <img
                 src={selectedProduct.image}
                 alt={selectedProduct.title}
                 className="w-full h-full object-cover"
-                style={{ objectPosition: selectedProduct.imagePosition || 'center 20%' }}
+                loading="lazy"
+                decoding="async"
+                style={{ objectPosition: selectedProduct.imagePosition || 'center center' }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#140c0a]/80 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#140c0a]/85 via-transparent to-transparent" />
               
-              <div className="absolute bottom-5 left-6 right-6 text-white">
-                <span className="bg-[#140c0a]/80 text-[#ffd796] px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider border border-[#ffd796]/30 inline-block mb-2">
+              <div className="absolute bottom-4 sm:bottom-5 left-4 sm:left-6 right-4 sm:right-6 text-white">
+                <span className="bg-[#775a25] text-[#ffd796] px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[9px] sm:text-[10px] font-semibold uppercase tracking-wider border border-[#ffd796]/30 inline-block mb-1.5 sm:mb-2">
                   {selectedProduct.tag}
                 </span>
-                <h3 className="font-serif text-2xl font-medium leading-tight">
+                <h3 className="font-serif text-xl sm:text-2xl md:text-3xl font-medium leading-tight">
                   {selectedProduct.title}
                 </h3>
               </div>
             </div>
 
             {/* Product Details */}
-            <div className="p-6 sm:p-8 space-y-6 max-h-[60vh] overflow-y-auto">
-              <p className="text-sm text-[#4e4543] font-light leading-relaxed">
+            <div className="p-4 sm:p-6 md:p-8 space-y-5 sm:space-y-6 max-h-[55vh] sm:max-h-[60vh] overflow-y-auto">
+              <p className="text-xs sm:text-sm text-[#4e4543] font-light leading-relaxed">
                 {selectedProduct.description}
               </p>
 
@@ -618,18 +623,18 @@ export const CoursesAndProductsPage: React.FC<CoursesAndProductsPageProps> = ({ 
               </div>
 
               {selectedProduct.volumeOrWeight && (
-                <div className="bg-[#fbf8f4] p-3.5 rounded-xl border border-[#2b211f]/5 flex items-center justify-between text-xs">
-                  <span className="text-[#8c827a]">Packaging Size / Net Weight:</span>
+                <div className="bg-[#fbf8f4] p-3 sm:p-3.5 rounded-xl border border-[#2b211f]/5 flex items-center justify-between text-xs">
+                  <span className="text-[#8c827a]">Net Contents:</span>
                   <span className="font-semibold text-[#140c0a]">{selectedProduct.volumeOrWeight}</span>
                 </div>
               )}
             </div>
 
             {/* Modal Actions */}
-            <div className="p-6 bg-[#fbf8f4] border-t border-[#2b211f]/8 flex items-center justify-between gap-4">
+            <div className="p-4 sm:p-6 bg-[#fbf8f4] border-t border-[#2b211f]/8 flex flex-col xs:flex-row items-stretch xs:items-center justify-between gap-3 sm:gap-4">
               <div>
-                <span className="text-[10px] uppercase tracking-wider text-[#4e4543] block">Price</span>
-                <span className="font-serif text-2xl font-bold text-[#140c0a]">
+                <span className="text-[9px] sm:text-[10px] uppercase tracking-wider text-[#4e4543] block">Price</span>
+                <span className="font-serif text-xl sm:text-2xl font-bold text-[#140c0a]">
                   {selectedProduct.price}
                 </span>
               </div>
@@ -638,7 +643,7 @@ export const CoursesAndProductsPage: React.FC<CoursesAndProductsPageProps> = ({ 
                   handleWhatsAppInquiry(selectedProduct.title, 'product', selectedProduct.price);
                   setSelectedProduct(null);
                 }}
-                className="px-6 py-3 bg-[#140c0a] hover:bg-[#2b211f] text-white rounded-xl text-xs font-semibold uppercase tracking-wider shadow-md transition-colors flex items-center gap-2"
+                className="w-full xs:w-auto px-5 sm:px-6 py-2.5 sm:py-3 bg-[#140c0a] hover:bg-[#2b211f] text-white rounded-xl text-xs font-semibold uppercase tracking-wider shadow-md transition-colors flex items-center justify-center gap-2"
               >
                 <ShoppingBag className="w-4 h-4 text-[#ffd796]" />
                 <span>Order via WhatsApp</span>
@@ -653,7 +658,7 @@ export const CoursesAndProductsPage: React.FC<CoursesAndProductsPageProps> = ({ 
         <div className="max-w-[1360px] mx-auto px-5 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
           <div>
             <span className="font-serif text-xl font-bold text-white block">
-              {business.businessName}
+              Academy &amp; Beauty Boutique
             </span>
             <span className="text-xs text-[#8c827a] font-light mt-0.5 block">
               Master Makeup Academy &amp; Haute Bridal Boutique

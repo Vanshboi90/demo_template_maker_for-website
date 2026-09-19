@@ -23,10 +23,9 @@ export const Navbar: React.FC<NavbarProps> = ({
     { label: 'Home', href: '#home' },
     { label: 'Services', href: '#services' },
     { label: 'Our Work', href: '#our-work' },
-    { label: 'About', href: '#about' },
     { label: 'Packages', href: '#bridal-packages' },
     { label: 'Contact', href: '#contact' },
-    { label: 'Courses & Shop', href: '/courses', isNewPage: true }
+    { label: 'Shop', href: '/courses', isNewPage: true }
   ];
 
   const handleLinkClick = (href: string) => {

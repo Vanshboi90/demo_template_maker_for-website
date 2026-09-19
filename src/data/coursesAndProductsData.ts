@@ -1,14 +1,5 @@
-import bridalThumb from '../assets/images/bridal_makeup_thumb.webp';
-import partyThumb from '../assets/images/party_makeup_thumb.webp';
-import hairThumb from '../assets/images/hair_styling_thumb.webp';
-import beautyThumb from '../assets/images/beauty_rituals_thumb.webp';
-import portCrimsonBride from '../assets/images/port_crimson_bride.webp';
-import portChampagneDusk from '../assets/images/port_champagne_dusk.webp';
-import portDewyPastels from '../assets/images/port_dewy_pastels.webp';
-import portCoutureBun from '../assets/images/port_couture_bun.webp';
-import portBronzeShimmer from '../assets/images/port_bronze_shimmer.webp';
-import portRoseRadiance from '../assets/images/port_rose_radiance.webp';
-import aboutPortrait from '../assets/images/about_portrait.webp';
+// Direct CDN imagery for courses & products to keep initial bundle lightweight
+
 
 export interface CourseItem {
   id: string;
@@ -65,8 +56,8 @@ export const ACADEMY_COURSES: CourseItem[] = [
     level: 'Beginner to Intermediate',
     rating: 4.9,
     studentsCount: '450+ Graduates',
-    image: portRoseRadiance,
-    imagePosition: 'center 15%',
+    image: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80',
+    imagePosition: 'center center',
     description: 'Transform your daily makeup routine and master show-stopping party glam tailored precisely to your facial anatomy, skin undertone, and lifestyle.',
     syllabus: [
       'Skin prep, hydration rituals & perfect foundation color matching',
@@ -96,8 +87,8 @@ export const ACADEMY_COURSES: CourseItem[] = [
     level: 'Intermediate to Aspiring Pro',
     rating: 5.0,
     studentsCount: '280+ Artists',
-    image: bridalThumb,
-    imagePosition: 'center 15%',
+    image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80',
+    imagePosition: 'center 20%',
     description: 'Become a highly sought-after bridal artist. Master high-definition camera-ready bridal makeup, waterproof airbrush guns, and regal traditional draping.',
     syllabus: [
       'HD skin buffing & waterproof bridal base formulas for 16+ hours',
@@ -127,8 +118,8 @@ export const ACADEMY_COURSES: CourseItem[] = [
     level: 'Advanced / Career Launch',
     rating: 5.0,
     studentsCount: '190+ Working Pros',
-    image: aboutPortrait,
-    imagePosition: 'center 15%',
+    image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=80',
+    imagePosition: 'center 20%',
     description: 'The definitive curriculum for artists aspiring to open their own bridal studio, work on destination weddings, and command premium booking rates.',
     syllabus: [
       'Advanced color theory, undertone neutralization & skin anatomy',
@@ -158,8 +149,8 @@ export const ACADEMY_COURSES: CourseItem[] = [
     level: 'Master Class',
     rating: 5.0,
     studentsCount: '120+ Studio Owners',
-    image: portCrimsonBride,
-    imagePosition: 'center 18%',
+    image: 'https://images.unsplash.com/photo-1595959183082-7b570b7e08e2?auto=format&fit=crop&w=800&q=80',
+    imagePosition: 'center 20%',
     description: 'Our most comprehensive flagship diploma. From basic fundamentals to international fashion week runway techniques with a luxury professional kit included.',
     syllabus: [
       'Complete skincare biology, dermal preps & lymphatic sculpting',
@@ -189,8 +180,8 @@ export const ACADEMY_COURSES: CourseItem[] = [
     level: 'All Experience Levels',
     rating: 4.8,
     studentsCount: '320+ Stylists',
-    image: hairThumb,
-    imagePosition: 'center 15%',
+    image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80',
+    imagePosition: 'center 20%',
     description: 'Elevate your hair game. Learn to sculpt red-carpet Hollywood waves, modern textured chignons, and intricate bridal updos that withstand hours of celebration.',
     syllabus: [
       'Thermal styling science, heat shields & all-day curl longevity locks',
@@ -221,8 +212,8 @@ export const BOUTIQUE_PRODUCTS: ProductItem[] = [
     originalPrice: '₹3,200',
     rating: 4.9,
     reviewsCount: 185,
-    image: portChampagneDusk,
-    imagePosition: 'center 20%',
+    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80',
+    imagePosition: 'center center',
     inStock: true,
     badge: 'Must Have for Brides',
     description: 'A velvet keepsake clutch curated with every essential needed to keep your bridal glam pristine from morning pheras through late-night reception dances.',
@@ -246,8 +237,8 @@ export const BOUTIQUE_PRODUCTS: ProductItem[] = [
     originalPrice: '₹2,400',
     rating: 5.0,
     reviewsCount: 240,
-    image: beautyThumb,
-    imagePosition: 'center 20%',
+    image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=800&q=80',
+    imagePosition: 'center center',
     inStock: true,
     badge: 'Secret to Glass Skin',
     description: 'Suspended pure 24-karat gold flakes blended with cold-pressed rosehip and squalane oil. Imparts a lit-from-within glow without greasiness under foundation.',
@@ -270,8 +261,8 @@ export const BOUTIQUE_PRODUCTS: ProductItem[] = [
     originalPrice: '₹1,800',
     rating: 4.9,
     reviewsCount: 310,
-    image: portRoseRadiance,
-    imagePosition: 'center 15%',
+    image: 'https://images.unsplash.com/photo-1583001809873-a128495da465?auto=format&fit=crop&w=800&q=80',
+    imagePosition: 'center center',
     inStock: true,
     description: 'Feather-light reusable silk mink lash set with invisible cotton bands. Ranges from delicate daytime wisps to opulent high-drama bridal flutters.',
     details: [
@@ -293,8 +284,8 @@ export const BOUTIQUE_PRODUCTS: ProductItem[] = [
     originalPrice: '₹2,250',
     rating: 4.8,
     reviewsCount: 142,
-    image: portBronzeShimmer,
-    imagePosition: 'center 20%',
+    image: 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=800&q=80',
+    imagePosition: 'center center',
     inStock: true,
     description: 'Three universally flattering shades specifically formulated for warm South Asian undertones. Kiss-proof, food-proof, and comfortable velvet matte texture.',
     details: [
@@ -316,8 +307,8 @@ export const BOUTIQUE_PRODUCTS: ProductItem[] = [
     originalPrice: '₹1,400',
     rating: 4.9,
     reviewsCount: 98,
-    image: portCoutureBun,
-    imagePosition: 'center 18%',
+    image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80',
+    imagePosition: 'center center',
     inStock: true,
     description: 'Bespoke hand-wired fresh-look jasmine buds and freshwater pearl hairpins crafted for opulent bridal chignons and sangeet braids.',
     details: [
@@ -339,8 +330,8 @@ export const BOUTIQUE_PRODUCTS: ProductItem[] = [
     originalPrice: '₹1,950',
     rating: 5.0,
     reviewsCount: 215,
-    image: partyThumb,
-    imagePosition: 'center 18%',
+    image: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=800&q=80',
+    imagePosition: 'center center',
     inStock: true,
     description: 'Designed specifically for Indian weddings, sangeet dancefloors, and tropical heat. Creates an invisible, weightless shield that locks makeup in place.',
     details: [

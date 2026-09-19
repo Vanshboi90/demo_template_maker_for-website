@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Navbar } from './components/Navbar';
@@ -25,17 +25,32 @@ import { BookingSection } from './components/BookingSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { FloatingMobileBar } from './components/FloatingMobileBar';
-import { AppointmentsDrawer } from './components/AppointmentsDrawer';
-import { ServiceDetailModal } from './components/ServiceDetailModal';
-import { LightboxModal } from './components/LightboxModal';
-import { BookingModal } from './components/BookingModal';
+import { AcademyShopBanner } from './components/AcademyShopBanner';
+import { PredictiveSection } from './components/common/PredictiveSection';
 import { Appointment, ServiceItem, PortfolioItem } from './types';
 import { BusinessProvider } from './context/BusinessContext';
-import { Dashboard } from './components/dashboard/Dashboard';
 import { DemoSwitcherBar } from './components/common/DemoSwitcherBar';
-import { CoursesAndProductsPage } from './components/store/CoursesAndProductsPage';
-import { AcademyShopBanner } from './components/AcademyShopBanner';
 import { Sparkles } from 'lucide-react';
+
+// Code-split heavy routes & popups to keep initial load featherweight
+const Dashboard = React.lazy(() =>
+  import('./components/dashboard/Dashboard').then((m) => ({ default: m.Dashboard }))
+);
+const CoursesAndProductsPage = React.lazy(() =>
+  import('./components/store/CoursesAndProductsPage').then((m) => ({ default: m.CoursesAndProductsPage }))
+);
+const BookingModal = React.lazy(() =>
+  import('./components/BookingModal').then((m) => ({ default: m.BookingModal }))
+);
+const AppointmentsDrawer = React.lazy(() =>
+  import('./components/AppointmentsDrawer').then((m) => ({ default: m.AppointmentsDrawer }))
+);
+const ServiceDetailModal = React.lazy(() =>
+  import('./components/ServiceDetailModal').then((m) => ({ default: m.ServiceDetailModal }))
+);
+const LightboxModal = React.lazy(() =>
+  import('./components/LightboxModal').then((m) => ({ default: m.LightboxModal }))
+);
 
 function parseCurrentLocation(): { route: 'landing' | 'dashboard' | 'store'; slug: string } {
   if (typeof window === 'undefined') {
@@ -201,6 +216,25 @@ function StudioLandingPage({
     };
   }, []);
 
+  // Proactively warm up upcoming component chunks during browser idle time
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const idleCallback = window.requestIdleCallback || ((cb) => setTimeout(cb, 300));
+    const handle = idleCallback(() => {
+      // Warm up modals and external views in background
+      import('./components/BookingModal');
+      import('./components/AppointmentsDrawer');
+      import('./components/ServiceDetailModal');
+      import('./components/LightboxModal');
+      import('./components/store/CoursesAndProductsPage');
+    });
+    return () => {
+      if (window.cancelIdleCallback && typeof handle === 'number') {
+        window.cancelIdleCallback(handle);
+      }
+    };
+  }, []);
+
   const scrollToWork = () => {
     const section = document.getElementById('our-work');
     if (section) {
@@ -252,7 +286,7 @@ function StudioLandingPage({
 
       {/* Main Content Sections */}
       <main className="w-full pt-20">
-        {/* 2. Hero Section */}
+        {/* 2. Hero Section - Loaded immediately for zero LCP latency */}
         <Hero
           onBookClick={() => openBookingModal('Bridal Makeup')}
           onExploreWorkClick={scrollToWork}
@@ -273,90 +307,123 @@ function StudioLandingPage({
           onOpenDetails={(service) => setDetailService(service)}
         />
 
-        {/* 6. Featured Bridal Experience */}
-        <BridalSpotlight
-          onExplorePackages={() => scrollToSection('#bridal-packages')}
-          onBookBridal={() => openBookingModal('Bridal Makeup')}
-        />
+        {/* 6. Featured Bridal Experience - Anticipated 1000px before scroll */}
+        <PredictiveSection id="bridal-spotlight" minHeight="500px" anticipationPx={1000}>
+          <BridalSpotlight
+            onExplorePackages={() => scrollToSection('#bridal-packages')}
+            onBookBridal={() => openBookingModal('Bridal Makeup')}
+          />
+        </PredictiveSection>
 
         {/* 7. Portfolio Lookbook */}
-        <PortfolioSection
-          onOpenLightbox={(item) => setLightboxItem(item)}
-        />
+        <PredictiveSection id="our-work" minHeight="600px" anticipationPx={1000}>
+          <PortfolioSection
+            onOpenLightbox={(item) => setLightboxItem(item)}
+          />
+        </PredictiveSection>
 
         {/* 8. Before & After Transformation Slider */}
-        <BeforeAfterSlider
-          onSeeMore={scrollToWork}
-        />
+        <PredictiveSection minHeight="450px" anticipationPx={1000}>
+          <BeforeAfterSlider
+            onSeeMore={scrollToWork}
+          />
+        </PredictiveSection>
 
         {/* 9. Bridal Packages */}
-        <BridalPackages
-          onSelectPackage={(pkgTitle) => openBookingModal(pkgTitle)}
-        />
+        <PredictiveSection id="bridal-packages" minHeight="600px" anticipationPx={1000}>
+          <BridalPackages
+            onSelectPackage={(pkgTitle) => openBookingModal(pkgTitle)}
+          />
+        </PredictiveSection>
 
         {/* 9.5 Academy & Boutique Showcase Banner */}
-        <AcademyShopBanner onOpenStore={() => window.open('/courses', '_blank')} />
+        <PredictiveSection minHeight="300px" anticipationPx={1000}>
+          <AcademyShopBanner onOpenStore={() => window.open('/courses', '_blank')} />
+        </PredictiveSection>
 
         {/* 10. Client Testimonials */}
-        <Testimonials />
+        <PredictiveSection minHeight="450px" anticipationPx={1000}>
+          <Testimonials />
+        </PredictiveSection>
 
         {/* 11. Why Choose Us / Standard */}
-        <WhyChooseUs />
+        <PredictiveSection minHeight="400px" anticipationPx={1000}>
+          <WhyChooseUs />
+        </PredictiveSection>
 
         {/* 12. Instagram Lookbook Feed */}
-        <InstagramFeed />
+        <PredictiveSection minHeight="500px" anticipationPx={1000}>
+          <InstagramFeed />
+        </PredictiveSection>
 
         {/* 13. Concierge Booking CTA Banner */}
-        <BeautyConciergeCTA
-          onBookClick={() => openBookingModal('Bridal Makeup')}
-        />
+        <PredictiveSection minHeight="250px" anticipationPx={1000}>
+          <BeautyConciergeCTA
+            onBookClick={() => openBookingModal('Bridal Makeup')}
+          />
+        </PredictiveSection>
 
         {/* 14. Interactive Appointment Reservation Engine */}
-        <BookingSection
-          selectedServicePreset={selectedServicePreset}
-          onBookingConfirmed={handleBookingConfirmed}
-          onViewAppointments={() => setIsDrawerOpen(true)}
-        />
+        <PredictiveSection id="booking" minHeight="600px" anticipationPx={1000}>
+          <BookingSection
+            selectedServicePreset={selectedServicePreset}
+            onBookingConfirmed={handleBookingConfirmed}
+            onViewAppointments={() => setIsDrawerOpen(true)}
+          />
+        </PredictiveSection>
 
         {/* 15. Visit Studio / Contact & Map */}
-        <ContactSection />
+        <PredictiveSection id="contact" minHeight="500px" anticipationPx={1000}>
+          <ContactSection />
+        </PredictiveSection>
       </main>
 
       {/* 16. Atelier Footer */}
-      <Footer onNavClick={(href) => scrollToSection(href)} />
+      <PredictiveSection minHeight="250px" anticipationPx={800}>
+        <Footer onNavClick={(href) => scrollToSection(href)} />
+      </PredictiveSection>
 
       {/* 17. Mobile Floating Sticky Quick Bar */}
       <FloatingMobileBar onBookClick={() => openBookingModal('Bridal Makeup')} />
 
-      {/* 18. Modals & Drawers */}
-      <AppointmentsDrawer
-        isOpen={isDrawerOpen}
-        onClose={() => setIsDrawerOpen(false)}
-        appointments={appointments}
-        onCancelAppointment={handleCancelAppointment}
-        onNewBooking={() => openBookingModal('Bridal Makeup')}
-      />
+      {/* 18. Modals & Drawers - Loaded lazily on demand */}
+      <Suspense fallback={null}>
+        {isDrawerOpen && (
+          <AppointmentsDrawer
+            isOpen={isDrawerOpen}
+            onClose={() => setIsDrawerOpen(false)}
+            appointments={appointments}
+            onCancelAppointment={handleCancelAppointment}
+            onNewBooking={() => openBookingModal('Bridal Makeup')}
+          />
+        )}
 
-      <ServiceDetailModal
-        service={detailService}
-        onClose={() => setDetailService(null)}
-        onBookService={(name) => openBookingModal(name)}
-      />
+        {detailService && (
+          <ServiceDetailModal
+            service={detailService}
+            onClose={() => setDetailService(null)}
+            onBookService={(name) => openBookingModal(name)}
+          />
+        )}
 
-      <LightboxModal
-        item={lightboxItem}
-        onClose={() => setLightboxItem(null)}
-        onRequestLook={(lookTitle) => openBookingModal(lookTitle)}
-      />
+        {lightboxItem && (
+          <LightboxModal
+            item={lightboxItem}
+            onClose={() => setLightboxItem(null)}
+            onRequestLook={(lookTitle) => openBookingModal(lookTitle)}
+          />
+        )}
 
-      {/* 19. Pop-up Booking Modal with pre-selected service */}
-      <BookingModal
-        isOpen={bookingModalState.isOpen}
-        onClose={closeBookingModal}
-        servicePreset={bookingModalState.servicePreset}
-        onBookingConfirmed={handleBookingConfirmed}
-        onViewAppointments={() => setIsDrawerOpen(true)}
-      />
+        {bookingModalState.isOpen && (
+          <BookingModal
+            isOpen={bookingModalState.isOpen}
+            onClose={closeBookingModal}
+            servicePreset={bookingModalState.servicePreset}
+            onBookingConfirmed={handleBookingConfirmed}
+            onViewAppointments={() => setIsDrawerOpen(true)}
+          />
+        )}
+      </Suspense>
     </div>
   );
 }
@@ -384,21 +451,30 @@ export default function App() {
 
   return (
     <BusinessProvider currentSlug={navState.slug}>
-      {navState.route === 'dashboard' ? (
-        <Dashboard
-          onNavigateHome={() => navigateTo('/')}
-          onSelectDemo={(slug) => navigateTo(`/makeup/${slug}`)}
-        />
-      ) : navState.route === 'store' ? (
-        <CoursesAndProductsPage
-          onBackToStudio={() => navigateTo('/')}
-        />
-      ) : (
-        <StudioLandingPage
-          onOpenDashboard={() => navigateTo('/dashboard')}
-          onSwitchDemo={(slug) => navigateTo(`/makeup/${slug}`)}
-        />
-      )}
+      <Suspense
+        fallback={
+          <div className="min-h-screen bg-[#fdf9f4] flex flex-col items-center justify-center gap-3">
+            <div className="w-8 h-8 rounded-full border-2 border-[#775a25] border-t-transparent animate-spin" />
+            <span className="font-serif text-sm tracking-widest uppercase text-[#775a25]">Loading Atelier...</span>
+          </div>
+        }
+      >
+        {navState.route === 'dashboard' ? (
+          <Dashboard
+            onNavigateHome={() => navigateTo('/')}
+            onSelectDemo={(slug) => navigateTo(`/makeup/${slug}`)}
+          />
+        ) : navState.route === 'store' ? (
+          <CoursesAndProductsPage
+            onBackToStudio={() => navigateTo('/')}
+          />
+        ) : (
+          <StudioLandingPage
+            onOpenDashboard={() => navigateTo('/dashboard')}
+            onSwitchDemo={(slug) => navigateTo(`/makeup/${slug}`)}
+          />
+        )}
+      </Suspense>
     </BusinessProvider>
   );
 }
