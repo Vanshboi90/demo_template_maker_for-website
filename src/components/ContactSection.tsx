@@ -1,5 +1,4 @@
 import React from 'react';
-import { ASSETS } from '../data';
 import { useBusiness } from '../context/BusinessContext';
 import { MapPin, Clock, Phone, Mail, Navigation } from 'lucide-react';
 
@@ -8,6 +7,24 @@ export const ContactSection: React.FC = () => {
 
   const fullAddress = `${business.address.street}, ${business.address.city}, ${business.address.state} ${business.address.pincode}`;
   const mapsLink = business.socials.googleMapsUrl || `https://maps.google.com/?q=${encodeURIComponent(fullAddress)}`;
+
+  const getEmbedMapUrl = () => {
+    if (business.socials.googleMapsUrl) {
+      try {
+        const urlObj = new URL(business.socials.googleMapsUrl);
+        const q = urlObj.searchParams.get('q');
+        if (q && q.trim()) {
+          return `https://maps.google.com/maps?q=${encodeURIComponent(q.trim())}&t=&z=14&ie=UTF8&iwloc=&output=embed`;
+        }
+      } catch {
+        // Fall through
+      }
+    }
+    const query = [business.address.street, business.address.city, business.address.state]
+      .filter(Boolean)
+      .join(', ');
+    return `https://maps.google.com/maps?q=${encodeURIComponent(query || business.address.city || 'India')}&t=&z=14&ie=UTF8&iwloc=&output=embed`;
+  };
 
   return (
     <section id="contact" className="w-full py-20 lg:py-28 bg-[#f7f3ee] border-t border-[#2b211f]/5">
@@ -99,30 +116,41 @@ export const ContactSection: React.FC = () => {
             </a>
           </div>
 
-          {/* Right Map Card Visual */}
+          {/* Right Embedded Google Map */}
           <div className="lg:col-span-6 w-full">
-            <div
-              className="w-full h-96 lg:h-[450px] bg-cover bg-center rounded-2xl shadow-xl relative overflow-hidden border border-[#2b211f]/5 group"
-              style={{ backgroundImage: `url('${ASSETS.mapCover}')` }}
-            >
-              <div className="absolute inset-0 bg-[#140c0a]/20 backdrop-blur-[0.5px]"></div>
+            <div className="w-full h-96 lg:h-[480px] rounded-2xl shadow-xl relative overflow-hidden border border-[#2b211f]/10 group bg-[#f1ede8]">
+              <iframe
+                src={getEmbedMapUrl()}
+                title={`${business.businessName} Studio Google Map`}
+                className="w-full h-full border-0"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
 
-              {/* Floating Landmark Card */}
-              <div className="absolute bottom-6 left-6 right-6 bg-[#fdf9f4]/95 backdrop-blur-md p-5 rounded-2xl shadow-lg flex items-center justify-between border border-[#2b211f]/5">
+              {/* Floating Landmark / Studio Card */}
+              <div className="absolute bottom-5 left-5 right-5 sm:right-auto sm:max-w-xs bg-[#fdf9f4]/95 backdrop-blur-md p-4 rounded-xl shadow-lg flex items-center justify-between gap-4 border border-[#2b211f]/10 pointer-events-auto">
                 <div>
                   <p className="text-[10px] uppercase tracking-widest text-[#775a25] font-semibold">
                     {business.address.city} Landmark
                   </p>
-                  <p className="text-[16px] font-semibold text-[#140c0a] mt-0.5">
-                    {business.shortName || business.businessName} Atelier {business.address.city}
+                  <p className="text-[15px] font-semibold text-[#140c0a] mt-0.5">
+                    {business.shortName || business.businessName}
                   </p>
                   <p className="text-xs text-[#4e4543] font-light mt-0.5">
-                    {business.hours.note || `${business.address.landmark || 'Valet Parking Available for Clients'}`}
+                    {business.address.landmark || business.hours.note || `${business.address.street}, ${business.address.city}`}
                   </p>
                 </div>
-                <div className="w-10 h-10 rounded-full bg-[#775a25]/15 flex items-center justify-center text-[#775a25]">
-                  <MapPin className="w-5 h-5 text-[#775a25]" />
-                </div>
+                <a
+                  href={mapsLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-[#775a25] text-white flex items-center justify-center shadow hover:bg-[#140c0a] transition-colors shrink-0"
+                  title="Open in Google Maps"
+                  aria-label="Open in Google Maps"
+                >
+                  <Navigation className="w-4 h-4" />
+                </a>
               </div>
             </div>
           </div>

@@ -97,11 +97,12 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
               >
                 {/* Visual Header or Icon Top */}
                 {hasImage ? (
-                  <div className="relative h-64 overflow-hidden bg-[#f1ede8]">
+                  <div className="relative h-72 overflow-hidden bg-[#f1ede8]">
                     <img
                       src={service.image}
                       alt={service.title}
-                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      style={{ objectPosition: service.imagePosition || 'center 15%' }}
                     />
                     <span className="absolute top-4 left-4 bg-[#140c0a]/80 backdrop-blur-md text-[#fdf9f4] px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider">
                       {service.tag}

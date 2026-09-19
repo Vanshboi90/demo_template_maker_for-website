@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { ExternalLink, Play, Heart, MessageCircle, Music2, Eye, Share2, X, Sparkles, Volume2 } from 'lucide-react';
 
-import reelBridalReveal from '../assets/images/reel_bridal_reveal_1789578319175.jpg';
-import reelGlassSkin from '../assets/images/reel_glass_skin_1789578332051.jpg';
-import reelHairChignon from '../assets/images/reel_hair_chignon_1789578348763.jpg';
-import reelSangeetGlam from '../assets/images/reel_sangeet_glam_1789578363714.jpg';
-import reelTempleBride from '../assets/images/reel_temple_bride_1789578379566.jpg';
-import reelCocktailWaves from '../assets/images/reel_cocktail_waves_1789578393527.jpg';
-import portCrimsonBride from '../assets/images/port_crimson_bride_1789567416012.jpg';
-import portRoseRadiance from '../assets/images/port_rose_radiance_1789567504394.jpg';
+import reelBridalReveal from '../assets/images/reel_bridal_reveal.webp';
+import reelGlassSkin from '../assets/images/reel_glass_skin.webp';
+import reelHairChignon from '../assets/images/reel_hair_chignon.webp';
+import reelSangeetGlam from '../assets/images/reel_sangeet_glam.webp';
+import reelTempleBride from '../assets/images/reel_temple_bride.webp';
+import reelCocktailWaves from '../assets/images/reel_cocktail_waves.webp';
+import portCrimsonBride from '../assets/images/port_crimson_bride.webp';
+import portRoseRadiance from '../assets/images/port_rose_radiance.webp';
 
 export interface ReelItem {
   id: string;
@@ -199,7 +199,7 @@ export const InstagramFeed: React.FC = () => {
                 <img
                   src={reel.image}
                   alt={reel.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-full object-cover object-[center_15%] transition-transform duration-700 group-hover:scale-105"
                 />
 
                 {/* Permanent Gradient Scrim */}
@@ -281,7 +281,7 @@ export const InstagramFeed: React.FC = () => {
             <img
               src={selectedReel.image}
               alt={selectedReel.title}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-[center_15%]"
             />
 
             {/* Modal Overlay Content */}

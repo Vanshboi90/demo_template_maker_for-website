@@ -63,7 +63,7 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({ onSeeMore 
             <img
               src={ASSETS.engagementMain}
               alt="Subtle occasion transformation - Finished Glam"
-              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+              className="absolute inset-0 w-full h-full object-cover object-[center_15%] pointer-events-none"
             />
 
             {/* "Before" Image (Clipped Foreground) */}
@@ -74,7 +74,7 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({ onSeeMore 
               <img
                 src={ASSETS.engagementMain}
                 alt="Natural clean skin prep - Before"
-                className="absolute top-0 left-0 max-w-none w-full h-full object-cover filter saturate-40 brightness-95 contrast-95"
+                className="absolute top-0 left-0 max-w-none w-full h-full object-cover object-[center_15%] filter saturate-40 brightness-95 contrast-95"
                 style={{
                   width: containerRef.current ? `${containerRef.current.clientWidth}px` : '100%'
                 }}

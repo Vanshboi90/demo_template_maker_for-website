@@ -1,26 +1,26 @@
 import { ServiceItem, PortfolioItem, BridalPackage, TestimonialItem, Stylist } from './types';
-import heroPortrait from './assets/images/hero_glam_portrait_1789566455496.jpg';
-import bridalThumb from './assets/images/bridal_makeup_thumb_1789566129405.jpg';
-import partyThumb from './assets/images/party_makeup_thumb_1789566144861.jpg';
-import hairThumb from './assets/images/hair_styling_thumb_1789566100716.jpg';
-import beautyThumb from './assets/images/beauty_rituals_thumb_1789566112931.jpg';
+import heroPortrait from './assets/images/hero_glam_portrait.webp';
+import bridalThumb from './assets/images/bridal_makeup_thumb.webp';
+import partyThumb from './assets/images/party_makeup_thumb.webp';
+import hairThumb from './assets/images/hair_styling_thumb.webp';
+import beautyThumb from './assets/images/beauty_rituals_thumb.webp';
 
 // Dedicated, individual portfolio imagery
-import portCrimsonBride from './assets/images/port_crimson_bride_1789567416012.jpg';
-import portChampagneDusk from './assets/images/port_champagne_dusk_1789567430242.jpg';
-import portDewyPastels from './assets/images/port_dewy_pastels_1789567443850.jpg';
-import portCoutureBun from './assets/images/port_couture_bun_1789567457077.jpg';
-import portTradGold from './assets/images/port_trad_gold_1789567476149.jpg';
-import portBronzeShimmer from './assets/images/port_bronze_shimmer_1789567490730.jpg';
-import portRoseRadiance from './assets/images/port_rose_radiance_1789567504394.jpg';
-import portHollywoodWaves from './assets/images/port_hollywood_waves_1789567517861.jpg';
+import portCrimsonBride from './assets/images/port_crimson_bride.webp';
+import portChampagneDusk from './assets/images/port_champagne_dusk.webp';
+import portDewyPastels from './assets/images/port_dewy_pastels.webp';
+import portCoutureBun from './assets/images/port_couture_bun.webp';
+import portTradGold from './assets/images/port_trad_gold.webp';
+import portBronzeShimmer from './assets/images/port_bronze_shimmer.webp';
+import portRoseRadiance from './assets/images/port_rose_radiance.webp';
+import portHollywoodWaves from './assets/images/port_hollywood_waves.webp';
+import bridalSpotlightMain from './assets/images/bridal_spotlight_main.webp';
 
 export const ASSETS = {
   logo: 'https://lh3.googleusercontent.com/aida/AEtjO1Vp3uD1YFay-Qf-khJr0Rr7SWTWSwDOAA-pBbop2o-jaM3EKB0Lce85jRrRgAcQ3uKjlILcE2OxnR56lDEfpOBAzd7PHqaXCP2Sk2Y9TmI7V3M1kM1UTNmZgMJg4LcnVR-DhqZusnTcgVFiaHrkgADOLbcsE7OycuHQ2_Bjth7DGdgmMbv4V2DJvBQPfxF5xTrTokutb4u0JCCBzT_j5sRyOwdM3-s3VhJYNWqbRsZPizyd9lvTdVJsnO2g',
   heroMain: heroPortrait,
-  bridalMain: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDSTXMoGuEI7YEvraKBBCBDUJiPh_h2D4ATOb0gN8Xm6vQG1Lzv-ZTi87B_6w2aGxBFIYEx_oTeEqmb0bQLN8PTk-LqmT6OvddjjZpaAwTPijEps0mVykGrIA1JpMF2KLOWXQPVPjUWY7tjhDAWp8f-BUJvbuonHEi37ShoTUoxVAaCUIXStyf9bQOJ0_t_RZSS1N4EL_EIvfYnV3UlMxMj0BJdIPtd3zPcqogyy1ZU5x9El7kmxyhmKQ',
-  engagementMain: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAofMeZ8FY3Teq8S7nl1a2Tu3e-l93gY39yHcnp8_ufjvuwtF-sSmBgHKSOzPO4gfzaUG38_5VDMSS8F6n0ddgVT1OByxx679vdTGAHnqPxvkHKo8zXHguKmXVgdqr934VL5jrvg2S6AGEGRLNL-q0FX45ijJChE678JGiMBfKvdDAHImYXMzuvZszeUAxSxJJZuITiW01CK15VOBVWNfiybXANWjHX8sXhwcJkiDdU79WuOzdacMufAw',
-  mapCover: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBPo72aazrml_-wdyN2CxBQHJETNp4YqqODhwbN8M0jhC6BAGEtYjCAWxJe8c1jeDATtcrRQqPsJLa6ZdwdxLOsm_4HIgnnnESmGceBtthF6z-rmzkm0eAHKCVncNnVzh5sZB3GeTLoXpyvM9-H8ZMC4X6JnvEaW7DxY3dRT0UicxL1qQx62jCKdf0ar8tQY6ZpCbuIHeARmmYBIFUaB8PKvJQP2BXRoPJyRyseYqx9C0T3cK3anhDJGg',
+  bridalMain: bridalSpotlightMain,
+  engagementMain: portDewyPastels,
   thumbs: {
     bridal: bridalThumb,
     party: partyThumb,
@@ -77,7 +77,8 @@ export const SERVICES: ServiceItem[] = [
     numericPrice: 8000,
     duration: '2.5 - 3 Hours',
     tag: 'Couture Ritual',
-    image: ASSETS.bridalMain,
+    image: ASSETS.thumbs.bridal,
+    imagePosition: 'center 15%',
     description: 'Timeless, high-definition camera-ready makeup tailored for your wedding rituals, lehenga hues, and enduring comfort.',
     includes: [
       'High-Definition (HD) waterproof foundation blend',
@@ -95,7 +96,8 @@ export const SERVICES: ServiceItem[] = [
     numericPrice: 2500,
     duration: '1.5 Hours',
     tag: 'Evening Glam',
-    image: ASSETS.heroMain,
+    image: ASSETS.thumbs.party,
+    imagePosition: 'center 15%',
     description: 'Polished, luminous looks styled for receptions, galas, cocktails, and milestone celebrations.',
     includes: [
       'Luminous dewy skin preparation',
@@ -113,7 +115,8 @@ export const SERVICES: ServiceItem[] = [
     numericPrice: 4000,
     duration: '2 Hours',
     tag: 'Pre-Wedding',
-    image: ASSETS.engagementMain,
+    image: portRoseRadiance,
+    imagePosition: 'center 12%',
     description: 'Soft, sophisticated and dewy beauty designed for rings, daytime ceremonies, and intimate banquets.',
     includes: [
       'Micro-buffed natural skin finish',
@@ -131,6 +134,8 @@ export const SERVICES: ServiceItem[] = [
     numericPrice: 1500,
     duration: '1 Hour',
     tag: 'Bespoke Coiffure',
+    image: ASSETS.thumbs.hair,
+    imagePosition: 'center 15%',
     description: 'From ethereal soft waves and Hollywood curls to intricate traditional floral updos, sculpted to stay intact all celebration long.',
     includes: [
       'Texture prep & heat-protective shield',
@@ -148,6 +153,8 @@ export const SERVICES: ServiceItem[] = [
     numericPrice: 1000,
     duration: '1 Hour',
     tag: 'Dermal Glow',
+    image: ASSETS.thumbs.beauty,
+    imagePosition: 'center 20%',
     description: 'Deep hydration, lymphatic sculpting, and radiance facials to prep, soothe, and recharge your natural skin canvas.',
     includes: [
       'Double enzyme botanical cleanse',
@@ -165,6 +172,8 @@ export const SERVICES: ServiceItem[] = [
     numericPrice: 800,
     duration: '45 - 60 Mins',
     tag: 'Finishing Touch',
+    image: portCrimsonBride,
+    imagePosition: 'center 25%',
     description: 'Gel enhancements, French tips, bridal nail extensions, and flawless finishing touches for head-to-toe finesse.',
     includes: [
       'Cuticle conditioning and shaping',

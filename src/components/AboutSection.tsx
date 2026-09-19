@@ -1,6 +1,7 @@
 import React from 'react';
 import { Palette, Award, Diamond, ArrowRight } from 'lucide-react';
 import { useBusiness } from '../context/BusinessContext';
+import aboutPortrait from '../assets/images/about_portrait.webp';
 
 interface AboutSectionProps {
   onExploreServices: () => void;
@@ -18,7 +19,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onExploreServices })
           <div className="lg:col-span-6 relative">
             <div className="relative aspect-[4/5] max-w-md mx-auto rounded-2xl overflow-hidden shadow-2xl bg-[#f1ede8] border border-[#2b211f]/5">
               <img
-                src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&auto=format&fit=crop&q=80"
+                src={aboutPortrait}
                 alt={`${business.businessName} Editorial Portrait Craft`}
                 className="w-full h-full object-cover object-center"
               />

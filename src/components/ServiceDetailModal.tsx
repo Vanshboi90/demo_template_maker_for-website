@@ -40,7 +40,8 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
             <img
               src={service.image}
               alt={service.title}
-              className="w-full h-full object-cover object-center"
+              className="w-full h-full object-cover"
+              style={{ objectPosition: service.imagePosition || 'center 15%' }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#140c0a]/70 via-transparent to-transparent"></div>
             <div className="absolute bottom-4 left-6">

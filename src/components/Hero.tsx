@@ -128,7 +128,7 @@ export const Hero: React.FC<HeroProps> = ({
               <img
                 src={ASSETS.heroMain}
                 alt={`${business.businessName} Signature Soft Glam Artistry`}
-                className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover object-[center_20%] transform group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#140c0a]/65 via-transparent to-transparent"></div>
 
@@ -191,7 +191,7 @@ export const Hero: React.FC<HeroProps> = ({
                       src={item.image}
                       alt={item.name}
                       referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500"
                     />
                   </div>
                 </div>

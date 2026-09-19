@@ -9,6 +9,7 @@ export interface ServiceItem {
   duration: string;
   tag: string;
   image?: string;
+  imagePosition?: string;
   description: string;
   includes: string[];
 }

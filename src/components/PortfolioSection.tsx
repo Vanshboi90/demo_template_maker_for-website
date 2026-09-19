@@ -230,7 +230,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenLightb
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover object-[center_15%] transition-transform duration-700 group-hover:scale-105"
               />
 
               {/* View detail quick button badge */}
