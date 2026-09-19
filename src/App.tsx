@@ -33,15 +33,34 @@ import { Appointment, ServiceItem, PortfolioItem } from './types';
 import { BusinessProvider } from './context/BusinessContext';
 import { Dashboard } from './components/dashboard/Dashboard';
 import { DemoSwitcherBar } from './components/common/DemoSwitcherBar';
+import { CoursesAndProductsPage } from './components/store/CoursesAndProductsPage';
+import { AcademyShopBanner } from './components/AcademyShopBanner';
 import { Sparkles } from 'lucide-react';
 
-function parseCurrentLocation(): { route: 'landing' | 'dashboard'; slug: string } {
+function parseCurrentLocation(): { route: 'landing' | 'dashboard' | 'store'; slug: string } {
   if (typeof window === 'undefined') {
     return { route: 'landing', slug: 'demo01' };
   }
 
   const pathname = window.location.pathname.toLowerCase();
   const searchParams = new URLSearchParams(window.location.search);
+
+  // Check if store / courses / products / academy
+  if (
+    pathname === '/store' ||
+    pathname.startsWith('/store/') ||
+    pathname === '/courses' ||
+    pathname.startsWith('/courses/') ||
+    pathname === '/products' ||
+    pathname.startsWith('/products/') ||
+    pathname === '/academy' ||
+    pathname.startsWith('/academy/') ||
+    searchParams.get('view') === 'store' ||
+    searchParams.get('page') === 'courses' ||
+    searchParams.get('page') === 'products'
+  ) {
+    return { route: 'store', slug: 'demo01' };
+  }
 
   // Check if dashboard
   if (pathname === '/dashboard' || pathname.startsWith('/dashboard/') || searchParams.get('view') === 'dashboard') {
@@ -275,6 +294,9 @@ function StudioLandingPage({
           onSelectPackage={(pkgTitle) => openBookingModal(pkgTitle)}
         />
 
+        {/* 9.5 Academy & Boutique Showcase Banner */}
+        <AcademyShopBanner onOpenStore={() => window.open('/courses', '_blank')} />
+
         {/* 10. Client Testimonials */}
         <Testimonials />
 
@@ -366,6 +388,10 @@ export default function App() {
         <Dashboard
           onNavigateHome={() => navigateTo('/')}
           onSelectDemo={(slug) => navigateTo(`/makeup/${slug}`)}
+        />
+      ) : navState.route === 'store' ? (
+        <CoursesAndProductsPage
+          onBackToStudio={() => navigateTo('/')}
         />
       ) : (
         <StudioLandingPage

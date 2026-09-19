@@ -85,6 +85,23 @@ export const Footer: React.FC<FooterProps> = ({ onNavClick }) => {
               >
                 Our Philosophy
               </a>
+              <a
+                href="/courses"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-[#775a25] font-medium hover:text-[#140c0a] transition-colors flex items-center gap-1.5 pt-1 border-t border-[#2b211f]/5"
+              >
+                <span>Academy &amp; Masterclasses</span>
+                <span className="text-[9px] bg-[#775a25] text-white px-1.5 py-0.2 rounded font-bold">NEW</span>
+              </a>
+              <a
+                href="/products"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-[#775a25] font-medium hover:text-[#140c0a] transition-colors"
+              >
+                Curated Boutique &amp; Kits
+              </a>
             </div>
 
             {/* 3. Hours & Atelier */}

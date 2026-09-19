@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ASSETS } from '../data';
 import { useBusiness } from '../context/BusinessContext';
-import { CalendarCheck, Menu, X, Phone, LayoutDashboard } from 'lucide-react';
+import { CalendarCheck, Menu, X, Phone, LayoutDashboard, Sparkles, GraduationCap } from 'lucide-react';
 
 interface NavbarProps {
   onBookClick: () => void;
@@ -25,7 +25,8 @@ export const Navbar: React.FC<NavbarProps> = ({
     { label: 'Our Work', href: '#our-work' },
     { label: 'About', href: '#about' },
     { label: 'Packages', href: '#bridal-packages' },
-    { label: 'Contact', href: '#contact' }
+    { label: 'Contact', href: '#contact' },
+    { label: 'Courses & Shop', href: '/courses', isNewPage: true }
   ];
 
   const handleLinkClick = (href: string) => {
@@ -65,23 +66,37 @@ export const Navbar: React.FC<NavbarProps> = ({
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-7">
             {navLinks.map((link, idx) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleLinkClick(link.href);
-                }}
-                className={`text-[12px] uppercase tracking-[0.15em] font-medium transition-colors py-1 ${
-                  idx === 0
-                    ? 'text-[#140c0a] font-semibold border-b border-[#775a25]'
-                    : 'text-[#4e4543] hover:text-[#140c0a]'
-                }`}
-              >
-                {link.label}
-              </a>
+              link.isNewPage ? (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[11px] uppercase tracking-[0.16em] font-semibold text-[#775a25] hover:text-[#140c0a] transition-all py-1.5 px-3 rounded-full bg-[#775a25]/10 hover:bg-[#775a25]/20 border border-[#775a25]/25 flex items-center gap-1.5 shadow-2xs hover:scale-105"
+                  title="Explore Courses & Beauty Products"
+                >
+                  <Sparkles className="w-3 h-3 text-[#775a25]" />
+                  <span>{link.label}</span>
+                </a>
+              ) : (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleLinkClick(link.href);
+                  }}
+                  className={`text-[12px] uppercase tracking-[0.15em] font-medium transition-colors py-1 ${
+                    idx === 0
+                      ? 'text-[#140c0a] font-semibold border-b border-[#775a25]'
+                      : 'text-[#4e4543] hover:text-[#140c0a]'
+                  }`}
+                >
+                  {link.label}
+                </a>
+              )
             ))}
           </nav>
 
@@ -126,17 +141,36 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="lg:hidden bg-[#fdf9f4] border-b border-[#2b211f]/10 px-6 py-6 shadow-xl animate-in slide-in-from-top duration-200">
             <nav className="flex flex-col gap-4">
               {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLinkClick(link.href);
-                  }}
-                  className="text-[13px] uppercase tracking-[0.16em] font-medium text-[#140c0a] py-2 border-b border-[#2b211f]/5"
-                >
-                  {link.label}
-                </a>
+                link.isNewPage ? (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-[13px] uppercase tracking-[0.16em] font-semibold text-[#775a25] py-2.5 border-b border-[#2b211f]/5 flex items-center justify-between"
+                  >
+                    <div className="flex items-center gap-2">
+                      <GraduationCap className="w-4 h-4 text-[#775a25]" />
+                      <span>{link.label}</span>
+                    </div>
+                    <span className="text-[10px] bg-[#775a25] text-white px-2 py-0.5 rounded-full font-bold">
+                      NEW
+                    </span>
+                  </a>
+                ) : (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleLinkClick(link.href);
+                    }}
+                    className="text-[13px] uppercase tracking-[0.16em] font-medium text-[#140c0a] py-2 border-b border-[#2b211f]/5"
+                  >
+                    {link.label}
+                  </a>
+                )
               ))}
               <div className="pt-2 flex flex-col gap-3">
                 <button
